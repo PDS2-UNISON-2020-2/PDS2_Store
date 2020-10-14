@@ -79,6 +79,21 @@ namespace PDS2_Store.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string PrimerNombre { get; set; }
+        [DataType(DataType.Text)]
+        public string SegundoNombre { get; set; }
+        [DataType(DataType.Text)]
+        public string ApellidoPaterno { get; set; }
+        [DataType(DataType.Text)]
+        public string ApellidoMaterno { get; set; }
+
+        [DataType(DataType.DateTime)]
+        public System.DateTime FechaNacimiento { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel
