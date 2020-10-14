@@ -151,7 +151,14 @@ namespace PDS2_Store.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    UserName = model.Email, Email = model.Email,
+                    PrimerNombre = model.PrimerNombre,
+                    SegundoNombre = model.SegundoNombre,
+                    ApellidoPaterno = model.ApellidoPaterno,
+                    ApellidoMaterno = model.ApellidoMaterno,
+                    FechaNacimiento = model.FechaNacimiento
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
