@@ -82,15 +82,19 @@ namespace PDS2_Store.Models
 
         [Required]
         [DataType(DataType.Text)]
+        [Display(Name = "Nombre")]
         public string PrimerNombre { get; set; }
         [DataType(DataType.Text)]
         public string SegundoNombre { get; set; }
         [DataType(DataType.Text)]
+        [Display(Name = "Apellido Paterno")]
         public string ApellidoPaterno { get; set; }
         [DataType(DataType.Text)]
+        [Display(Name = "Apellido Materno")]
         public string ApellidoMaterno { get; set; }
 
         [DataType(DataType.DateTime)]
+        [Display(Name = "Fecha De Nacimiento")]
         public System.DateTime FechaNacimiento { get; set; }
 
 
