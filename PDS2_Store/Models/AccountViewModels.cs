@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PDS2_Store.Models
@@ -93,9 +94,9 @@ namespace PDS2_Store.Models
         [Display(Name = "Apellido Materno")]
         public string ApellidoMaterno { get; set; }
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [Display(Name = "Fecha De Nacimiento")]
-        public System.DateTime FechaNacimiento { get; set; }
+        public DateTime FechaNacimiento { get; set; }
 
 
     }
