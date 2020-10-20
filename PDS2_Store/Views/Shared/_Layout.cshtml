@@ -1,40 +1,183 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - PDS2</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <header class="header container-fluid hidden-xs ">
+        <img class="banner hidden-xs" alt="banner" src="~/Content/imagenes/banner.png" />
+    </header>
+
+    <nav class="nav hidden-xs navbar-default" role="navigation" style="background-color:#851ded">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("PDS2 Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="row">
+                <div class="navbar-header pull-left">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand hidden-xs" href="/Home/Index">PDS2</a>
+                    <a class="navbar-brand visible-xs"><span class="glyphicon glyphicon-home"></span></a>
+                    <!--hamb-->
+                    <button type="button" class="btn navbar-btn " onclick="openNav()"
+                            style="background-color: transparent;color: #f4faff; border: 2px solid #f4faff">
+                        <span class="icon-bar fa fa-bars active"></span>
+                    </button>
+                </div>
+                <div class="pull-left hidden-xs">
+                    <!--Barra de busqueda-->
+                    <form class="navbar-form" role="search" method="get" id="searchform" action="">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <input type="text" class="form-control searchTerm" value="" placeholder="Buscar..." name="s" id="s">
+                                <button type="submit" value="Search" class="btn searchButton"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="pull-right">
+                    <a class="navbar-brand visible-xs"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                    <!-- Hamburger Perfil -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="glyphicon glyphicon-user active" ;></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <!-- Perfil No Collapse de la hamburger-->
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <!--Mis pedidos barra normal-->
+                        <li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" class="">Mis Pedidos</a>
+                            }
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+        </div>
+    </nav>
+
+    <!-- NavBar pantalla peque;a-->
+    <div class="navbar navbar-default visible-xs">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Home-->
+                <a class="navbar-brand" href="/Home/Index"><span class="glyphicon glyphicon-home"></span></a>
+                <!-- Hamburger-->
+                <a class="navbar-brand" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" color:#fdfffc;></span></a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <!-- Carrito-->
+                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                    <!-- Perfil-->
+                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-user"></span></a>
+                }
+                else
+                {
+                    <!-- Registro -->
+                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <!-- Login -->
+                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-log-in"></span></a>
+                }
+
             </div>
+            <!-- Buscador-->
+            <div class="wrap">
+                <div class="search">
+                    <input type="text" class="searchTerm input-sm" placeholder="Buscar ...">
+                    <button type="submit" class="searchButton btn-sm">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Perfil No Collapse de la hamburger-->
         </div>
     </div>
+
+
+    <div class="wrapper">
+        <!-- The sidebar -->
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Categorias</a>
+            <a href="#">Categoria</a>
+            <a href="#">Categoria</a>
+            <a href="#">Categoria</a>
+        </div>
+    </div>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        <!-- Pie de pag -->
+        <footer class="panel-footer">
+            <div class="container" style="background-color:#ffd800">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item">
+                                <a href="#">Acerca de nosotros</a>
+                            </li>
+                            <li class="list-inline-item">&sdot;</li>
+                            <li class="list-inline-item">
+                                <a href="#">Contacto</a>
+                            </li>
+                            <li class="list-inline-item">&sdot;</li>
+                            <li class="list-inline-item">
+                                <a href="#">Terminos y condiciones</a>
+                            </li>
+                            <li class="list-inline-item">&sdot;</li>
+                            <li class="list-inline-item">
+                                <a href="#">Politicas de privacidad</a>
+                            </li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; PSD2 2020. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="credit-cards" style="text-align: center; width: 100%">
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_visa.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_master.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_paypal.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_unionpay.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_linepay.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_711_pay.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_fm_pay.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_taishin.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_amex.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_ecpay.png" />
+                        <img height="40" src="https://shoplineimg.com/assets/footer/card_jcb.png" />
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item mr-3">
+                                <a href="#">
+                                    <i class="fab fa-facebook fa-2x fa-fw"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item mr-3">
+                                <a href="#">
+                                    <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fab fa-instagram fa-2x fa-fw"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
@@ -43,3 +186,27 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "150px";
+        document.getElementById("main").style.marginLeft = "150px";
+    }
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+
+</script>
+
+<style>
+    #navPersona ul {
+        display: flex;
+    }
+
+    #navPersonal li {
+        flex: auto;
+    }
+</style>
