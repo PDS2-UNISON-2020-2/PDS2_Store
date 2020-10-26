@@ -1,0 +1,6 @@
+Aquí se creará la base de datos local al correr el comando
+
+Update-Database
+
+En la Consola del Administrador de paquetes
+(Herramientas > Administrador de paquetes NuGet)
