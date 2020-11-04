@@ -26,7 +26,7 @@ namespace PDS2_Store.Controllers
         public ActionResult CategoriaView(string categoria)
         {
             // Regresa la categoria con sus productos
-            var categModel = db.Categorias.Include("Productos")
+            var categModel = db.Categorias.Include("Products")
                 .Single(c => c.CategoryName == categoria);
             return View(categModel);
         }
