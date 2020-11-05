@@ -79,7 +79,16 @@ namespace PDS2_Store.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = await UserManager.FindAsync(model.Email, model.Password);
+                    if (user.Email.Equals("admin@dominio.com"))
+                    {
+
+                        return View("~/Views/Admin/Index.cshtml"); //codigo nuevo para admin
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
