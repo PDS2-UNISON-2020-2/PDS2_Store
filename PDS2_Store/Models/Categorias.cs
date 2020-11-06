@@ -11,7 +11,7 @@ namespace PDS2_Store.Models
         [ScaffoldColumn(false)]
         public int CategoriaID { get; set; }
 
-        [Required, StringLength(100), Display(Name = "Nombre de la categoria")]
+        [Required, StringLength(100), Display(Name = "Nombre de la categoria"), DataType(DataType.Text)]
         public string CategoryName { get; set; }
 
         public virtual ICollection<Producto> Products { get; set; }
