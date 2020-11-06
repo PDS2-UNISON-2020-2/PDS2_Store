@@ -4,26 +4,21 @@ namespace PDS2_Store.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.AspNet.Identity;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PDS2_Store.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PDS2_Store.Models.ProductContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "PDS2_Store.Models.ProductContext";
         }
 
-        protected override void Seed(PDS2_Store.Models.ApplicationDbContext context)
+        protected override void Seed(PDS2_Store.Models.ProductContext context)
         {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            //  This method will be called after migrating to the latest version.
 
-            if (!roleManager.RoleExists("Comprador"))
-                roleManager.Create(new IdentityRole("Comprador"));
-
-            if (!roleManager.RoleExists("Vendedor"))
-                roleManager.Create(new IdentityRole("Vendedor"));
-
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
         }
     }
 }
