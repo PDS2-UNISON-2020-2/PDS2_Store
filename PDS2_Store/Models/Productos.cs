@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
-
+using System.ComponentModel;
 
 namespace PDS2_Store.Models
 {
@@ -18,8 +18,10 @@ namespace PDS2_Store.Models
         public string ProductName { get; set; }
 
         [StringLength(10000), Display(Name = "Descripcion del producto"), DataType(DataType.MultilineText)]
+        [DefaultValue("El vendedor no agrego una descripcion.")]
         public string Description { get; set; }
 
+        [DataType(DataType.ImageUrl), DefaultValue("~/Content/imagenes/Imagen_no_disponible.png")]
         public string ImagePath { get; set; }
 
         [Required, Display(Name = "Precio"), DataType(DataType.Currency)]
@@ -28,9 +30,11 @@ namespace PDS2_Store.Models
         [Required, Display(Name = "Cantidad disponible")]
         public uint Cantidad { get; set; }
 
+        [Required]
         [Display(Name = "Categoria")]
         public int CategoryID { get; set; }
 
+        [Required]
         [Display(Name = "Vendedor")]
         public int VendedorID { get; set; }
 
@@ -43,11 +47,15 @@ namespace PDS2_Store.Models
     {
         public int ReviewsId { get; set; }
 
+        [Required]
         [StringLength(50000), Display(Name = "Reseña del producto"), DataType(DataType.MultilineText)]
         public string Review { get; set; }
 
+        [Required]
         public int ProductID { get; set; }
 
+        [Required]
+        [DataType(DataType.Text)]
         public string Usuario { get; set; }
 
         public virtual Producto Producto { get; set; }
