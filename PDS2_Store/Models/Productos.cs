@@ -55,7 +55,7 @@ namespace PDS2_Store.Models
         public int ProductID { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
+        [StringLength(100), Display(Name = "Usuario que hizo la reseña")]
         public string Usuario { get; set; }
 
         public virtual Producto Producto { get; set; }

@@ -58,7 +58,7 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,CategoryID,VendedorID")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoryID,VendedorID")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,CategoryID,VendedorID")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoryID,VendedorID")] Producto producto)
         {
             if (ModelState.IsValid)
             {

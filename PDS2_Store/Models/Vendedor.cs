@@ -14,6 +14,7 @@ namespace PDS2_Store.Models
         public int VendedorId { get; set; }
 
         [Required]
+        [StringLength(100), Display(Name = "Nombre del vendedor")]
         public string nombre { get; set; }
 
     }
