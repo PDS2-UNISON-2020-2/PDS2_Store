@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -58,10 +59,18 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoryID,VendedorID")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoryID,VendedorID")] Producto producto, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                //Este es donde se guardan las imagenes de los productos
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/Content/imagenes/Productos/")
+                                                          + file.FileName);
+                    producto.ImagePath = file.FileName;
+                }
+
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
