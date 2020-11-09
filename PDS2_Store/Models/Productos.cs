@@ -21,7 +21,7 @@ namespace PDS2_Store.Models
         [DefaultValue("El vendedor no agrego una descripcion.")]
         public string Description { get; set; }
 
-        [DataType(DataType.ImageUrl), DefaultValue("~/Content/imagenes/Imagen_no_disponible.png")]
+        [DataType(DataType.ImageUrl), DefaultValue("Imagen_no_disponible.png")]
         public string ImagePath { get; set; }
 
         [Required, Display(Name = "Precio"), DataType(DataType.Currency)]
