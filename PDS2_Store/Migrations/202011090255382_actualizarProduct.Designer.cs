@@ -7,13 +7,13 @@ namespace PDS2_Store.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Inicia : IMigrationMetadata
+    public sealed partial class actualizarProduct : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Inicia));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(actualizarProduct));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010140310035_Inicia"; }
+            get { return "202011090255382_actualizarProduct"; }
         }
         
         string IMigrationMetadata.Source
