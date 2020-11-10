@@ -79,11 +79,12 @@ namespace PDS2_Store.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //Login a base de roles
                     var user = await UserManager.FindAsync(model.Email, model.Password);
-                    if (user.Email.Equals("admin@dominio.com"))
+                    var roles = await UserManager.GetRolesAsync(user.Id);
+                    if (roles.Contains("admin"))
                     {
-
-                        return View("~/Views/Admin/Index.cshtml"); //codigo nuevo para admin
+                        return RedirectToAction("Index", "Admin");
                     }
                     else
                     {
@@ -171,6 +172,7 @@ namespace PDS2_Store.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "cliente"); // Defaul registro como cliente
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771

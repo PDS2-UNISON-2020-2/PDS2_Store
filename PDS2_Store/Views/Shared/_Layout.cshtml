@@ -28,20 +28,24 @@
                         <span class="icon-bar fa fa-bars active"></span>
                     </button>
                 </div>
-                <div class="pull-left hidden-xs">
-                    <!--Barra de busqueda-->
-                    <form class="navbar-form" role="search" method="get" id="searchform" action="">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <input type="text" class="form-control searchTerm" value="" placeholder="Buscar..." name="s" id="s">
-                                <button type="submit" value="Search" class="btn searchButton"><span class="glyphicon glyphicon-search"></span></button>
+                    <div class="pull-left hidden-xs">
+                        <!--Barra de busqueda-->
+                        <form class="navbar-form" role="search" method="get" id="searchform" action="">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <input type="text" class="form-control searchTerm" value="" placeholder="Buscar..." name="s" id="s">
+                                    <button type="submit" value="Search" class="btn searchButton"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                    
                 <div class="pull-right">
+                @if (User.IsInRole("cliente"))
+                {
                     <a class="navbar-brand visible-xs"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                    <!-- Hamburger Perfil -->
+                }
+                <!-- Hamburger Perfil -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="glyphicon glyphicon-user active" ;></span>
                     </button>
@@ -53,7 +57,7 @@
                     <ul class="nav navbar-nav">
                         <!--Mis pedidos barra normal-->
                         <li>
-                            @if (User.Identity.IsAuthenticated)
+                            @if(User.IsInRole("cliente"))
                             {
                                 <a href="#" class="">Mis Pedidos</a>
                             }
