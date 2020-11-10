@@ -80,16 +80,7 @@ namespace PDS2_Store.Controllers
             {
                 case SignInStatus.Success:
                     //Login a base de roles
-                    var user = await UserManager.FindAsync(model.Email, model.Password);
-                    var roles = await UserManager.GetRolesAsync(user.Id);
-                    if (roles.Contains("admin"))
-                    {
-                        return RedirectToAction("Index", "Admin");
-                    }
-                    else
-                    {
-                        return RedirectToLocal(returnUrl);
-                    }
+                    return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
