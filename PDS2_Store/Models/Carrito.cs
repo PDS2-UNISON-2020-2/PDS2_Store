@@ -20,7 +20,7 @@ namespace PDS2_Store.Models
 
         public System.DateTime DateCreated { get; set; }
 
-        public int ProductId { get; set; }
+        public int ProductoId { get; set; }
 
         public virtual Producto Product { get; set; }
     }

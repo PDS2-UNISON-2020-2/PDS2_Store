@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages.Html;
 using PDS2_Store.Models;
 
 namespace PDS2_Store.Controllers
@@ -27,7 +28,7 @@ namespace PDS2_Store.Controllers
         public ActionResult CategoriaView(string categoria)
         {
             // Regresa la categoria con sus productos
-            var categModel = db.Categorias.Include("Products")
+            var categModel = db.Categorias.Include(p => p.Products)
                 .Single(c => c.CategoryName == categoria);
             return View(categModel);
         }
@@ -59,23 +60,15 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoryID,VendedorID")] Producto producto, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoriaID,VendedorID")] Producto producto)
         {
             if (ModelState.IsValid)
             {
-                //Este es donde se guardan las imagenes de los productos
-                if (file != null)
-                {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Content/imagenes/Productos/")
-                                                          + file.FileName);
-                    producto.ImagePath = file.FileName;
-                }
 
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "nombre", producto.VendedorID);
             return View(producto);
         }
@@ -101,7 +94,7 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoryID,VendedorID")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoriaID,VendedorID")] Producto producto)
         {
             if (ModelState.IsValid)
             {
