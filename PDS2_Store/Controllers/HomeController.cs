@@ -6,12 +6,19 @@ using System.Web.Mvc;
 
 namespace PDS2_Store.Controllers
 {
-	[Authorize(Roles = "cliente")]
+	//[Authorize(Roles = "cliente")]
 	public class HomeController : Controller
 	{
 		public ActionResult Index()
 		{
-			return View();
+			if (User.IsInRole("admin"))
+			{
+				return RedirectToAction("Index", "Admin");
+			}
+			else
+			{
+				return View();
+			}
 		}
 
 		public ActionResult About()
