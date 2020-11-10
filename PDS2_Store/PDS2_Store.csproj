@@ -261,6 +261,10 @@
     <Compile Include="Migrations\202011090255382_actualizarProduct.Designer.cs">
       <DependentUpon>202011090255382_actualizarProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011100740440_corregirllavesforaneas.cs" />
+    <Compile Include="Migrations\202011100740440_corregirllavesforaneas.Designer.cs">
+      <DependentUpon>202011100740440_corregirllavesforaneas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -397,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011090255382_actualizarProduct.resx">
       <DependentUpon>202011090255382_actualizarProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011100740440_corregirllavesforaneas.resx">
+      <DependentUpon>202011100740440_corregirllavesforaneas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

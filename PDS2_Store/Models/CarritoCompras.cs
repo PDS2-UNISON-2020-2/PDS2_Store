@@ -30,14 +30,14 @@ namespace PDS2_Store.Models
             // Get the matching cart and product instances
             var cartItem = carroDB.Carts.SingleOrDefault(
                 c => c.CartId == CarritoId
-                && c.ProductId == producto.ProductoID);
+                && c.ProductoId == producto.ProductoID);
 
             if (cartItem == null)
             {
                 // Crea un nuevo cart item si no existe uno
                 cartItem = new Cart
                 {
-                    ProductId = producto.ProductoID,
+                    ProductoId = producto.ProductoID,
                     CartId = CarritoId,
                     Quantity = 1,
                     DateCreated = DateTime.Now
@@ -133,7 +133,7 @@ namespace PDS2_Store.Models
             {
                 var orderDetail = new DetallesCompra
                 {
-                    ProductoId = item.ProductId,
+                    ProductoId = item.ProductoId,
                     CompraId = compra.CompraId,
                     UnitPrice = item.Product.UnitPrice,
                     Quantity = item.Quantity

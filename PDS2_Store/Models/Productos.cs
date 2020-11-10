@@ -27,12 +27,12 @@ namespace PDS2_Store.Models
         [Required, Display(Name = "Precio"), DataType(DataType.Currency)]
         public decimal UnitPrice { get; set; }
 
-        [Required, Display(Name = "Cantidad disponible")]
+        [Display(Name = "Cantidad disponible")]
         public uint Cantidad { get; set; }
 
         [Required]
         [Display(Name = "Categoria")]
-        public int CategoryID { get; set; }
+        public int CategoriaID { get; set; }
 
         [Required]
         [Display(Name = "Vendedor")]
@@ -52,7 +52,7 @@ namespace PDS2_Store.Models
         public string Review { get; set; }
 
         [Required]
-        public int ProductID { get; set; }
+        public int ProductoID { get; set; }
 
         [Required]
         [StringLength(100), Display(Name = "Usuario que hizo la reseña")]
