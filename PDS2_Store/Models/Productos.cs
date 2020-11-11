@@ -5,6 +5,8 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.ComponentModel;
+using System.Data.SqlTypes;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace PDS2_Store.Models
 {
@@ -21,8 +23,7 @@ namespace PDS2_Store.Models
         [DefaultValue("El vendedor no agrego una descripcion.")]
         public string Description { get; set; }
 
-        [DataType(DataType.ImageUrl), DefaultValue("Imagen_no_disponible.png")]
-        public string ImagePath { get; set; }
+        public byte [] Imagen { get; set; }
 
         [Required, Display(Name = "Precio"), DataType(DataType.Currency)]
         public decimal UnitPrice { get; set; }
@@ -30,15 +31,13 @@ namespace PDS2_Store.Models
         [Display(Name = "Cantidad disponible")]
         public uint Cantidad { get; set; }
 
-        [Required]
         [Display(Name = "Categoria")]
-        public int CategoriaID { get; set; }
+        public int CatProductoId { get; set; }
 
-        [Required]
         [Display(Name = "Vendedor")]
         public int VendedorID { get; set; }
 
-        public virtual Categoria Category { get; set; }
+        public virtual CatProducto CatProducto { get; set; }
 
         public virtual Vendedor Vendedor { get; set; }
     }
@@ -54,9 +53,8 @@ namespace PDS2_Store.Models
         [Required]
         public int ProductoID { get; set; }
 
-        [Required]
-        [StringLength(100), Display(Name = "Usuario que hizo la reseña")]
-        public string Usuario { get; set; }
+        [StringLength(128), Display(Name = "Usuario que hizo la reseña")]
+        public string UserId { get; set; }
 
         public virtual Producto Producto { get; set; }
     }
@@ -68,6 +66,7 @@ namespace PDS2_Store.Models
         {
         } 
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<CatProducto> CatProductos { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Reviews> Reviews { get; set; }
         public DbSet<Vendedor> Vendedores { get; set; }

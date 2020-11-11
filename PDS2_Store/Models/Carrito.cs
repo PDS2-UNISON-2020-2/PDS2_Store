@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Policy;
 
 namespace PDS2_Store.Models
 {
@@ -29,15 +30,9 @@ namespace PDS2_Store.Models
     public partial class Compra
     {
         public int CompraId { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Direccion { get; set; }
-        public string Ciudad { get; set; }
-        public string Estado { get; set; }
-        public string CodigoPostal { get; set; }
-        public string Pais { get; set; }
-        public string Telefono { get; set; }
-        public string Email { get; set; }
+        public string UserId { get; set; }
+        public int DireccionId { get; set; }
+        public int TarjetaId { get; set; }
         public decimal Total { get; set; }
         public System.DateTime FechaCompra { get; set; }
         public List<DetallesCompra> Detalles { get; set; }

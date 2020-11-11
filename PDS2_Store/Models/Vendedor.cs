@@ -13,9 +13,8 @@ namespace PDS2_Store.Models
         [ScaffoldColumn(false)]
         public int VendedorId { get; set; }
 
-        [Required]
-        [StringLength(100), Display(Name = "Nombre del vendedor")]
-        public string nombre { get; set; }
+        [StringLength(128)]
+        public string UserId { get; set; }
 
     }
 }

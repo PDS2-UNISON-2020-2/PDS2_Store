@@ -19,17 +19,18 @@ namespace PDS2_Store.Controllers
         // GET: Productoes
         public ActionResult Index()
         {
-            var productos = db.Productos.Include(p => p.Vendedor);
+            var productos = db.Productos.Include(p => p.Vendedor);      
             return View(productos.ToList());
         }
 
         // GET: Categorias
         // Esta para la vista de los productos por categorias
+        // No sirve asi como esta, mejor voy a crear una vista para mandarla a llamar o si conoces una forma de hacerlo aqui mejor
         public ActionResult CategoriaView(string categoria)
         {
             // Regresa la categoria con sus productos
-            var categModel = db.Categorias.Include(p => p.Products)
-                .Single(c => c.CategoryName == categoria);
+            var categModel = db.CatProductos.Include(p => p.Products)
+                .Single(c => c.Categoria.CategoryName == categoria);
             return View(categModel);
         }
 
@@ -51,7 +52,8 @@ namespace PDS2_Store.Controllers
         // GET: Productoes/Create
         public ActionResult Create()
         {
-            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "nombre");
+            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
+            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId");
             return View();
         }
 
@@ -60,7 +62,7 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoriaID,VendedorID")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +71,8 @@ namespace PDS2_Store.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "nombre", producto.VendedorID);
+            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
+            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId", producto.VendedorID);
             return View(producto);
         }
 
@@ -85,7 +88,8 @@ namespace PDS2_Store.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "nombre", producto.VendedorID);
+            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
+            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId", producto.VendedorID);
             return View(producto);
         }
 
@@ -94,7 +98,7 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,ImagePath,UnitPrice,Cantidad,CategoriaID,VendedorID")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +106,8 @@ namespace PDS2_Store.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "nombre", producto.VendedorID);
+            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
+            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId", producto.VendedorID);
             return View(producto);
         }
 
