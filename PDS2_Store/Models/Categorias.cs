@@ -11,9 +11,20 @@ namespace PDS2_Store.Models
         [ScaffoldColumn(false)]
         public int CategoriaID { get; set; }
 
-        [Required, StringLength(100), Display(Name = "Nombre de la categoria"), DataType(DataType.Text)]
+        [Required, StringLength(100), Display(Name = "Nombre de la categoria")]
         public string CategoryName { get; set; }
+    }
 
-        public virtual ICollection<Producto> Products { get; set; }
+    public class CatProducto
+    {
+        public int CatProductoId { get; set; }
+
+        public string CatNombre { get; set; }
+
+        public int CategoriaID { get; set; }
+
+        public virtual Categoria Categoria { get; set; }
+
+        public virtual List<Producto> Products { get; set; }
     }
 }
