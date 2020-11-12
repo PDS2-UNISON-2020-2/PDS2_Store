@@ -269,6 +269,10 @@
     <Compile Include="Migrations\202011110908503_nuevosmodelos2.Designer.cs">
       <DependentUpon>202011110908503_nuevosmodelos2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011120226378_cantidadproducto.cs" />
+    <Compile Include="Migrations\202011120226378_cantidadproducto.Designer.cs">
+      <DependentUpon>202011120226378_cantidadproducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -411,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011110908503_nuevosmodelos2.resx">
       <DependentUpon>202011110908503_nuevosmodelos2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011120226378_cantidadproducto.resx">
+      <DependentUpon>202011120226378_cantidadproducto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -28,8 +28,9 @@ namespace PDS2_Store.Models
         [Required, Display(Name = "Precio"), DataType(DataType.Currency)]
         public decimal UnitPrice { get; set; }
 
+        [Required]
         [Display(Name = "Cantidad disponible")]
-        public uint Cantidad { get; set; }
+        public int Cantidad { get; set; }
 
         [Display(Name = "Categoria")]
         public int CatProductoId { get; set; }

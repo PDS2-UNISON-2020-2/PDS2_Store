@@ -66,7 +66,6 @@ namespace PDS2_Store.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -136,6 +135,8 @@ namespace PDS2_Store.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
