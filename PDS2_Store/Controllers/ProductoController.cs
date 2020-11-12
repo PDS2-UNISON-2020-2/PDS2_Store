@@ -28,10 +28,12 @@ namespace PDS2_Store.Controllers
         // No sirve asi como esta, mejor voy a crear una vista para mandarla a llamar o si conoces una forma de hacerlo aqui mejor
         public ActionResult CategoriaView(string categoria)
         {
+            //este se debe quitar cuando se lige la vista con la principal por el momento es para que muestre una categoria
+            categoria = "Ropa Mujeres";
+            //
             // Regresa la categoria con sus productos
-            var categModel = db.CatProductos.Include(p => p.Products)
-                .Single(c => c.Categoria.CategoryName == categoria);
-            return View(categModel);
+            var categ = db.Productos.Include(p => p.Vendedor).Where(c => c.CatProducto.CatNombre == categoria);
+            return View(categ.ToList());
         }
 
         // GET: Productoes/Details/5
