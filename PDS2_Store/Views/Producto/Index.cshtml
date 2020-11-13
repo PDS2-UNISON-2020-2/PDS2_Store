@@ -1,64 +1,95 @@
 ﻿@model IEnumerable<PDS2_Store.Models.Producto>
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Mis Productos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Añadir ", "Create", new { }, htmlAttributes: new { @class = "btn btn-primary btn-sm glyphicon glyphicon-plus" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Vendedor.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CatProducto.CatNombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vendedor.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CatProducto.CatNombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductoID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive" style="background-color:white">
+    <table class="table table-bordered table-condensed table-striped table-hover sortable">
+        <thead style="background-color:#851ded">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vendedor.UserId)
+                </th>
+                <th>
+                    <!-- Html.DisplayNameFor(model => model.ProductName) -->
+                    Nombre
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </th>
+                <th>
+                    <!-- Html.DisplayNameFor(model => model.CatProducto.CatNombre) -->
+                    Categoria
+                </th>
+                <th>
+                    Detalles
+                </th>
+                <th>
+                    Editar
+                </th>
+                <th>
+                    Eliminar
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @if (item.Imagen != null)
+                    {
+                        <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Imagen))"
+                             class="img-fluid img-thumbnail"  style="max-height: 50px; max-width: 50px;"/>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vendedor.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatProducto.CatNombre)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Details", new { id = item.ProductoID }, htmlAttributes: new { @class = "btn btn-info btn-sm glyphicon glyphicon-eye-open" })
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.ProductoID }, htmlAttributes: new { @class = "btn btn-warning btn-sm glyphicon glyphicon-pencil" })
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Delete", new { id = item.ProductoID }, htmlAttributes: new { @class = "btn btn-danger btn-sm glyphicon glyphicon-trash" })
+                </td>
+            </tr>
+             }
+        </tbody>
+    </table>
+</div>

@@ -5,63 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Producto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Vendedor.UserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Vendedor.UserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CatProductoId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CatProductoId)
-        </dd>
-
-    </dl>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+            <!--Titulo-->
+            <h3 class="modal-title">@Html.DisplayFor(model => model.ProductName)</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 product_img">
+                    <!--Imagen-->
+                    <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.Imagen))" class="img-responsive">
+                </div>
+                <div class="col-md-6 product_content">
+                    <!--ID-->
+                    <h4>Product Id: <span>@Html.DisplayFor(model => model.ProductoID)</span></h4>
+                    <h4>Vendedor Id: <span>@Html.DisplayFor(model => model.Vendedor.UserId)</span></h4>
+                    <!--Rating-->
+                    <div class="rating">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        (10 reviews)
+                    </div>
+                    <!--Descripcion-->
+                    <p>@Html.DisplayFor(model => model.Description)</p>
+                    <!--Precio-->
+                    <h3 class="cost"><span class="glyphicon glyphicon-usd"></span> @Html.DisplayFor(model => model.UnitPrice)<small class="pre-cost"><span class="glyphicon glyphicon-usd"></span></small></h3>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <select class="form-control" name="select">
+                                <option value="" selected="">QTY</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="space-ten"></div>
+                    <div class="btn-ground">
+                        @Html.ActionLink("Añadir A Carrito", "AddToCart", "CarritoCompras", new { id = Model.ProductoID }, htmlAttributes: new { @class = "btn  btn-primary glyphicon glyphicon-shopping-cart" }) |
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductoID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Comprar Ahora", "Index")
 </p>
