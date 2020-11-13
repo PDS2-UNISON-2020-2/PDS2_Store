@@ -1,6 +1,5 @@
 ﻿@model PDS2_Store.Models.CarritoComprasViewModels
 
-
 <h2>Index</h2>
 
 <div class="container">
@@ -9,14 +8,14 @@
             <h4 class="h4">Productos: @Model.CartItems.Count </h4>
             <h4 class="h4">Subtotal : $@Model.CartTotal </h4>
             <button>Limpiar</button>
-            <button>Proceder A Comprar</button>
+            <button>Proceder A Compra</button>
         </div>
         <div class="col-12 col-sm-8" style="overflow-y:scroll">
             @foreach (var item in Model.CartItems)
             {
                 <div class="col-12">
                     <div class="col-5">
-                        <img src="@item.Product.Imagen" />
+                        <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(@item.Product.Imagen))" class="img-responsive">
                     </div>
                     <div class="col-7">
                         <h4 class="h4">
@@ -27,9 +26,8 @@
                         <p>Cantidad en el carrito : @item.Quantity</p>
                         <button>-</button><input type="number" min="0" style="width:50px; height:40px" /> <button>+</button>
                     </div>
-
                 </div>
             }
         </div>
     </div>
-    </div>
+</div>

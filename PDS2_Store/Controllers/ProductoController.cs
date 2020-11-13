@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages.Html;
+using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
 
 namespace PDS2_Store.Controllers
@@ -19,9 +20,13 @@ namespace PDS2_Store.Controllers
         // GET: Productoes
         public ActionResult Index()
         {
-            var productos = db.Productos.Include(p => p.Vendedor);      
+            var productos = db.Productos.Include(p => p.Vendedor);
+
+            
+
             return View(productos.ToList());
         }
+
 
         // GET: Categorias
         // Esta para la vista de los productos por categorias
@@ -62,10 +67,14 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description,Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description, Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto, HttpPostedFileBase foto)
         {
             if (ModelState.IsValid)
             {
+                byte[] image = new byte[foto.ContentLength];
+                foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
+                producto.Imagen = image;
+
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");

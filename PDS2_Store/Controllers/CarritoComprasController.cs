@@ -79,5 +79,6 @@ namespace PDS2_Store.Controllers
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
         }
+
     }
 }
