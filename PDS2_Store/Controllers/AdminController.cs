@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PDS2_Store.RepositorioDapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,18 @@ namespace PDS2_Store.Controllers
         {
             return View();
         }
+
+
+
+        // GET: Admin/GetRequests
+        // Esto regrea una lista de las solicitudes para ser vendedor
+        public ActionResult GetRequests()
+        {
+            RepoDapper Repo = new RepoDapper();
+            return View(Repo.GetRequests());
+        }
+
+
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)

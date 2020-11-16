@@ -84,18 +84,4 @@ namespace PDS2_Store.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
-
-    public class RequestViewModel
-    {
-        public string nombre { get; set; }
-        public string apellidos { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public string Email { get; set; }
-        public int Telefono { get; set; }
-        public string RFC { get; set; }
-        public string Direccion { get; set; }
-        public int Postal { get; set; }
-        public string Estado { get; set; }
-        public string Ciudad { get; set; }
-    }
 }
