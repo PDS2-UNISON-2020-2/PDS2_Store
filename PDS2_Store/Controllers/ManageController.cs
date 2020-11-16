@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PDS2_Store.Models;
+using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
@@ -321,6 +322,167 @@ namespace PDS2_Store.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
+
+        //Prueba para ver si jala el storeprocedure
+        // GET: /Manage/Solicitud
+        public ActionResult Solicitud()
+        {
+            return View();
+        }
+
+        //Si funciona
+        // POST: /Manage/Solicitud
+        [HttpPost]
+        public ActionResult Solicitud(Request re)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    re.UserId = User.Identity.GetUserId();
+                    RepoDapper Repo = new RepoDapper();
+                    Repo.LlenarSolicitud(re);
+                    ViewBag.Message = "Su solicitud se envio.";
+                }
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "Su solicitud no se envio.";
+                return View();
+            }
+        }
+
+
+        // Regresa lista con las direcciones del usuario
+        // GET: /Manage/Direcciones
+        public ActionResult Direcciones()
+        {
+            var userid = User.Identity.GetUserId();
+            RepoDapper EmpRepo = new RepoDapper();
+            var tar = EmpRepo.GetDirecciones(userid);
+            return View(tar);
+        }
+
+        //Si funciona
+        // GET: /Manage/AddDireccion
+        public ActionResult AddDireccion()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/AddDireccion
+        [HttpPost]
+        public ActionResult AddDireccion(DireccionViewModel dir)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    dir.UserId = User.Identity.GetUserId();
+                    RepoDapper DirRepo = new RepoDapper();
+                    DirRepo.CrearDireccion(dir);
+                    ViewBag.Message = "La direccion se agrego.";
+                }
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "La tarjeta no se agrego.";
+                return View();
+            }
+        }
+
+        // Falta probarlo, jala pero no me esta funcionando, no ejecuta el procedure parece
+        // GET: /Manage/EditDireccion
+        public ActionResult EditDireccion(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            RepoDapper DirRepo = new RepoDapper();
+            return View(DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id));
+        }
+        // POST: /Manage/EditDireccion
+        [HttpPost]
+        public ActionResult EditDireccion(Direccion dir)
+        {
+            try
+            {
+                RepoDapper DirRepo = new RepoDapper();
+                DirRepo.EditarDireccion(dir);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // Regresa lista con las tarjetas del usuario
+        // GET: /Manage/Tarjetas
+        public ActionResult Tarjetas()
+        {
+            var userid = User.Identity.GetUserId();
+            RepoDapper EmpRepo = new RepoDapper();
+            var tar = EmpRepo.GetTarjetas(userid);
+            return View(tar);
+        }
+
+        //
+        // GET: /Manage/AddTarjeta
+        public ActionResult AddTarjeta()
+        {
+            return View();
+        }
+
+        //Si funciona
+        // POST: /Manage/AddTarjeta
+        [HttpPost]
+        public ActionResult AddTarjeta(TarjetaViewModel tar)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    RepoDapper TarRepo = new RepoDapper();
+                    tar.UserId = User.Identity.GetUserId();
+                    TarRepo.CrearTarjeta(tar);
+                    ViewBag.Message = "La tarjeta se agrego.";
+                }
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "La tarjeta no se agrego.";
+                return View();
+            }
+        }
+
+        // Falta probarlo, jala pero no me esta funcionando, no ejecuta el procedure parece
+        // GET: /Manage/EditTarjeta
+        public ActionResult EditTarjeta(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            RepoDapper TarRepo = new RepoDapper();
+            return View(TarRepo.GetTarjetas(userId).Find(Tar => Tar.id == id));
+        }
+        // POST: /Manage/EditTarjeta
+        [HttpPost]
+        public ActionResult EditTarjeta(Tarjeta tar)
+        {
+            try
+            {
+                RepoDapper TarRepo = new RepoDapper();
+                TarRepo.EditarTarjeta(tar);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -20,15 +20,16 @@ namespace PDS2_Store.Models
 
     public class Request
     {
+        [Display(Name = "ID de la solicitud")]
         public int id { get; set; }
-        public string nombre { get; set; }
-        public string apellidos { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public string Email { get; set; }
-        public int Telefono { get; set; }
+        public string correo { get; set; }
+        public int celular { get; set; }
         public string RFC { get; set; }
         public string Direccion { get; set; }
-        public int Postal { get; set; }
+        public int CodigoPostal { get; set; }
         public string Estado { get; set; }
         public string Ciudad { get; set; }
         [StringLength(128)]

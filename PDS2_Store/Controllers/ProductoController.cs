@@ -8,8 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages.Html;
-using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
+using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
@@ -20,11 +20,22 @@ namespace PDS2_Store.Controllers
         // GET: Productoes
         public ActionResult Index()
         {
-            var productos = db.Productos.Include(p => p.Vendedor);
-
-            
-
+            var productos = db.Productos.Include(p => p.Vendedor);      
             return View(productos.ToList());
+        }
+
+        //Lista de categorias con EF
+        public ActionResult Categorias()
+        {
+            var categ = db.Categorias.ToList();
+            return View(categ);
+        }
+        //Lista de subcategorias con EF
+        public ActionResult SubCategoria(string categoria)
+        {
+            //categoria = "Ropa, Zapatos y Accesorios";
+            var categ = db.CatProductos.Where(c => c.Categoria.CategoryName == categoria);
+            return View(categ.ToList());
         }
 
 
@@ -40,6 +51,31 @@ namespace PDS2_Store.Controllers
             var categ = db.Productos.Include(p => p.Vendedor).Where(c => c.CatProducto.CatNombre == categoria);
             return View(categ.ToList());
         }
+
+        //Lista de categorias con dapper
+        public ActionResult CategoriasDapper()
+        {
+            RepoDapper EmpRepo = new RepoDapper();
+            var categ = EmpRepo.GetCategorias();
+            return View(categ);
+        }
+        //Lista de subcategorias con dapper
+        public ActionResult SubCategoriaDapper(string categoria)
+        {
+            //categoria = "Ropa, Zapatos y Accesorios";
+            RepoDapper EmpRepo = new RepoDapper();
+            var categ = EmpRepo.GetSubCategorias(categoria);
+            return View(categ);
+        }
+        //Lista de productos con dapper
+        public ActionResult ProductosDapper(string categ)
+        {
+            //categ = "Ropa Mujeres";
+            RepoDapper EmpRepo = new RepoDapper();
+            var prod = EmpRepo.GetSubCategorias(categ);
+            return View(prod);
+        }
+
 
         // GET: Productoes/Details/5
         public ActionResult Details(int? id)
