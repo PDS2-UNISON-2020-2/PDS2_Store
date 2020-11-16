@@ -41,6 +41,36 @@ namespace PDS2_Store.Controllers
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
+        
+        //Update porque no entendi como usar el otro metodo (el metodo de abajo es el original)
+        // GET: /Store/AddToCart/5
+        public ActionResult RemoveFromCartItem(int id)
+        {
+            // Get the cart
+            var cart = CarritoCompras.GetCart(HttpContext);
+            cart.RemoveFromCart(id);
+            // Go back to the main store page for more shopping
+            return RedirectToAction("Index");
+        }
+        //Eliminar todos los productos del carrito
+        public ActionResult VaciarCarrito()
+        {
+            // Get the cart
+            var cart = CarritoCompras.GetCart(HttpContext);
+            cart.EmptyCart();
+            // Go back to the main store page for more shopping
+            return RedirectToAction("Index");
+        }
+        //Eliminar producto del carrito
+        public ActionResult RemoveFromCartProducto(int id)
+        {
+            // Get the cart
+            var cart = CarritoCompras.GetCart(HttpContext);
+            cart.RemoveFromCartProducto(id);
+            // Go back to the main store page for more shopping
+            return RedirectToAction("Index");
+        }
+
 
         // AJAX: /ShoppingCart/RemoveFromCart/5
         //Este metodo usa AJAX Updates con JQuery
@@ -67,7 +97,7 @@ namespace PDS2_Store.Controllers
                 ItemCount = itemCount,
                 DeleteId = id
             };
-            return Json(results);
+            return RedirectToAction("Index");
         }
 
         // GET: /ShoppingCart/CartSummary
