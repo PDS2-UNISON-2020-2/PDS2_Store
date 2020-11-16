@@ -79,6 +79,21 @@ namespace PDS2_Store.Models
             }
             return itemCount;
         }
+        //Eliminar todo los items de un producto
+        public void RemoveFromCartProducto(int id)
+        {
+            // Get the cart
+            var cartItems = carroDB.Carts.Where(
+                cart => cart.CartId == CarritoId
+                && cart.ItemId == id);
+
+            foreach (var cartItem in cartItems)
+            {
+                carroDB.Carts.Remove(cartItem);
+            }
+            // Save changes
+            carroDB.SaveChanges();
+        }
 
         public void EmptyCart()
         {
