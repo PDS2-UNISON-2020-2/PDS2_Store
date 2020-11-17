@@ -13,7 +13,14 @@ namespace PDS2_Store.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-    }
+
+        // Info del usuario
+      //  public string PrimerNombre { get; set; }
+       // public string SegundoNombre { get; set; }
+        //public string ApellidoMaterno { get; set; }
+        //public string ApellidoPaterno { get; set; }
+        //public DateTime FechadeNacimiento { get; set; }
+    }    
 
     public class ManageLoginsViewModel
     {
