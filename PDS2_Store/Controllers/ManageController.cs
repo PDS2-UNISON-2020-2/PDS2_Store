@@ -64,7 +64,7 @@ namespace PDS2_Store.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Se ha quitado su número de teléfono."
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();          
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -72,6 +72,7 @@ namespace PDS2_Store.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                
             };
             return View(model);
         }
@@ -481,6 +482,26 @@ namespace PDS2_Store.Controllers
                 return View();
             }
         }
+        //GET Info Usuario
+        public async Task<ActionResult> Index()
+        {
+            var userId = User.Identity.GetUserId();
+            ApplicationUser x = await UserManager.FindByIdAsync(userId);            
+            var model = new IndexViewModel
+            {                
+                HasPassword = HasPassword(),
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                PrimerNombre = x.PrimerNombre,
+                SegundoNombre = x.SegundoNombre,
+                ApellidoPaterno = x.ApellidoPaterno,
+                ApellidoMaterno = x.ApellidoMaterno,
+                FechadeNacimiento = x.FechaNacimiento
+
+            };
+            return View(model);
+
+        }
+        
 
 
 
