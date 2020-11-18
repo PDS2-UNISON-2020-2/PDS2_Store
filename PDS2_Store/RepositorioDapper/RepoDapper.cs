@@ -141,6 +141,42 @@ namespace PDS2_Store.RepositorioDapper
             }
         }
 
+        //Lista de Paqueteria para compras
+        public List<PaqueteriaCompraViewModel> GetEnvios()
+        {
+            try
+            {
+                connection();
+                con.Open();
+                IList<PaqueteriaCompraViewModel> ReqList = SqlMapper.Query<PaqueteriaCompraViewModel>(
+                                 con, "dbo.ListaPaqueteriaCompra").ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //Saca el precio de envio
+        public List<Paquete> GetPrecioEnvio(int paq, bool ex)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @paqueteid = paq, @express = ex };
+                IList<Paquete> ReqList = SqlMapper.Query<Paquete>(
+                                 con, "dbo.CostoEnvio", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         //Lista de Tarjetas
         //Funciona, manda la lista de tarjetas del usuario
         public List<Tarjeta> GetTarjetas(string user)
@@ -243,7 +279,7 @@ namespace PDS2_Store.RepositorioDapper
                 con.Open();
                 var parameters = new { @userid = user };
                 IList<Direccion> ReqList = SqlMapper.Query<Direccion>(
-                                 con, "dbo.ListaDireccioness", parameters, commandType: CommandType.StoredProcedure).ToList();
+                                 con, "dbo.ListaDirecciones", parameters, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();
                 return ReqList.ToList();
             }

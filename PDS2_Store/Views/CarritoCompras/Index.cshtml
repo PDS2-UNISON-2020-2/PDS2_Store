@@ -22,7 +22,8 @@
                                             <div class="row">
                                                 <div class="col-md-3 product-name">
                                                     <div class="product-name">
-                                                        <a href="#">@item.Product.ProductName</a>
+                                                        <a href="#">
+                                                        @Html.ActionLink(item.Product.ProductName,"Details","Producto", new { id = item.ProductoId}, null)</a>
                                                         <div class="product-info">
                                                             <div>Descripcion: <span class="value">@item.Product.Description</span></div>
                                                         </div>
@@ -68,8 +69,8 @@
                         <div class="summary-item"><span class="text">Subtotal (@(Model.CartItems.Sum(item => item.Quantity)) productos):</span><span class="price">$ @Model.CartTotal </span></div>
                         <div class="summary-item"><span class="text">IVA</span><span class="price">$0</span></div>
                         <div class="summary-item"><span class="text">Total</span><span class="price">$ @Model.CartTotal </span></div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Proceder al pago</button>
-                        <button type="button" class="btn btn-success btn-lg btn-block">Sigue comprando <i class="fa fa-angle-left"></i></button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Proceder al pago(@Html.ActionLink("Checkout", "Compra"))</button>
+                        <button type="button" class="btn btn-success btn-lg btn-block">Sigue comprando(@Html.ActionLink("Regresar", "Index", "Home") <i class="fa fa-angle-left"></i></button>
                     </div>
                 </div>
             </div>

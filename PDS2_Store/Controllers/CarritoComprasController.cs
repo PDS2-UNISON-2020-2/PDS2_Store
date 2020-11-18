@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
+using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
@@ -72,7 +74,7 @@ namespace PDS2_Store.Controllers
         }
 
 
-        // AJAX: /ShoppingCart/RemoveFromCart/5
+        /*/ AJAX: /ShoppingCart/RemoveFromCart/5
         //Este metodo usa AJAX Updates con JQuery
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
@@ -98,7 +100,7 @@ namespace PDS2_Store.Controllers
                 DeleteId = id
             };
             return RedirectToAction("Index");
-        }
+        }*/
 
         // GET: /ShoppingCart/CartSummary
         [ChildActionOnly]
@@ -110,5 +112,51 @@ namespace PDS2_Store.Controllers
             return PartialView("CartSummary");
         }
 
+
+        //
+        // GET: /CarritoCompras/Compra
+        public ActionResult Compra()
+        {
+            var userid = User.Identity.GetUserId();
+            RepoDapper EmpRepo = new RepoDapper();
+            ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
+            ViewBag.DireccionID = new SelectList(EmpRepo.GetDirecciones(userid), "id", "Direccion");
+            ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre");
+            return View();
+        }
+
+        //
+        // POST: /CarritoCompras/Compra
+        [HttpPost]
+        public ActionResult Compra(Compra compra)
+        {
+            TryUpdateModel(compra);
+            var userid = User.Identity.GetUserId();
+            RepoDapper EmpRepo = new RepoDapper();
+            ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
+            ViewBag.DireccionID = new SelectList(EmpRepo.GetDirecciones(userid), "id", "Direccion");
+            ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre");
+            try
+            {
+                compra.UserId = userid;
+                compra.FechaCompra = DateTime.Now;
+
+                var envio = EmpRepo.GetPrecioEnvio(compra.PaqueteriaId, compra.Express);
+                var en = envio.First();
+                carroDB.Compras.Add(compra);
+                carroDB.SaveChanges();
+                ViewBag.Message = en.Precio;
+                 var cart = CarritoCompras.GetCart(this.HttpContext);
+                cart.CreateOrder(compra, en.Precio);
+
+                return RedirectToAction("index", "Home");
+
+            }
+            catch
+            {
+                return View(compra);
+            }
+            
+        }
     }
 }
