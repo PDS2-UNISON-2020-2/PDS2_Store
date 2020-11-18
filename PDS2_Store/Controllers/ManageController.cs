@@ -64,16 +64,24 @@ namespace PDS2_Store.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Se ha quitado su número de teléfono."
                 : "";
 
-            var userId = User.Identity.GetUserId();          
+            var userId = User.Identity.GetUserId();
+            ApplicationUser x = await UserManager.FindByIdAsync(userId);
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-                
-            };
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                //User info  
+                PrimerNombre = x.PrimerNombre,
+                SegundoNombre = x.SegundoNombre,
+                ApellidoPaterno = x.ApellidoPaterno,
+                ApellidoMaterno = x.ApellidoMaterno,
+                FechadeNacimiento = x.FechaNacimiento,
+                Email = x.Email
+  
+        };
             return View(model);
         }
 
@@ -481,27 +489,7 @@ namespace PDS2_Store.Controllers
             {
                 return View();
             }
-        }
-        //GET Info Usuario
-        public async Task<ActionResult> UserInfo()
-        {
-            var userId = User.Identity.GetUserId();
-            ApplicationUser x = await UserManager.FindByIdAsync(userId);            
-            var model = new IndexViewModel
-            {                
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                PrimerNombre = x.PrimerNombre,
-                SegundoNombre = x.SegundoNombre,
-                ApellidoPaterno = x.ApellidoPaterno,
-                ApellidoMaterno = x.ApellidoMaterno,
-                FechadeNacimiento = x.FechaNacimiento,
-                Email = x.Email
-            };
-            return View(model);
-
-        }
-        
+        }        
 
         protected override void Dispose(bool disposing)
         {
