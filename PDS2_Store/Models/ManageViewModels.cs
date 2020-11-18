@@ -15,11 +15,12 @@ namespace PDS2_Store.Models
         public bool BrowserRemembered { get; set; }
 
         // Info del usuario
-      //  public string PrimerNombre { get; set; }
-       // public string SegundoNombre { get; set; }
-        //public string ApellidoMaterno { get; set; }
-        //public string ApellidoPaterno { get; set; }
-        //public DateTime FechadeNacimiento { get; set; }
+        public string PrimerNombre { get; set; }
+        public string SegundoNombre { get; set; }
+        public string ApellidoMaterno { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public DateTime FechadeNacimiento { get; set; }        
+        public string Email { get; set; }
     }    
 
     public class ManageLoginsViewModel

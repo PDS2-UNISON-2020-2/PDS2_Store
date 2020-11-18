@@ -483,7 +483,7 @@ namespace PDS2_Store.Controllers
             }
         }
         //GET Info Usuario
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> UserInfo()
         {
             var userId = User.Identity.GetUserId();
             ApplicationUser x = await UserManager.FindByIdAsync(userId);            
@@ -495,15 +495,13 @@ namespace PDS2_Store.Controllers
                 SegundoNombre = x.SegundoNombre,
                 ApellidoPaterno = x.ApellidoPaterno,
                 ApellidoMaterno = x.ApellidoMaterno,
-                FechadeNacimiento = x.FechaNacimiento
-
+                FechadeNacimiento = x.FechaNacimiento,
+                Email = x.Email
             };
             return View(model);
 
         }
         
-
-
 
         protected override void Dispose(bool disposing)
         {
