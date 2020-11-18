@@ -30,9 +30,12 @@ namespace PDS2_Store.Models
     public partial class Compra
     {
         public int CompraId { get; set; }
+        [StringLength(128)]
         public string UserId { get; set; }
         public int DireccionId { get; set; }
         public int TarjetaId { get; set; }
+        public int PaqueteriaId { get; set; }
+        public bool Express { get; set; }
         public decimal Total { get; set; }
         public System.DateTime FechaCompra { get; set; }
         public List<DetallesCompra> Detalles { get; set; }

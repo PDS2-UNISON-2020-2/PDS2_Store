@@ -137,7 +137,7 @@ namespace PDS2_Store.Models
             return total ?? decimal.Zero;
         }
 
-        public int CreateOrder(Compra compra)
+        public int CreateOrder(Compra compra, decimal envio)
         {
             decimal orderTotal = 0;
 
@@ -160,6 +160,7 @@ namespace PDS2_Store.Models
 
             }
             // Set the order's total to the orderTotal count
+            orderTotal += envio;
             compra.Total = orderTotal;
 
             // Save the order

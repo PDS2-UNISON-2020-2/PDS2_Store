@@ -278,6 +278,14 @@
     <Compile Include="Migrations\202011120226378_cantidadproducto.Designer.cs">
       <DependentUpon>202011120226378_cantidadproducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011181050586_compra.cs" />
+    <Compile Include="Migrations\202011181050586_compra.Designer.cs">
+      <DependentUpon>202011181050586_compra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011181107067_compra2.cs" />
+    <Compile Include="Migrations\202011181107067_compra2.Designer.cs">
+      <DependentUpon>202011181107067_compra2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -285,6 +293,7 @@
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\CarritoCompras.cs" />
     <Compile Include="Models\CarritoComprasViewModels.cs" />
+    <Compile Include="Models\Paqueterias.cs" />
     <Compile Include="Models\Direcciones.cs" />
     <Compile Include="Models\Tarjetas.cs" />
     <Compile Include="Models\Vendedor.cs" />
@@ -394,9 +403,11 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\CarritoCompras\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\CarritoCompras\Compra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Compra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -426,6 +437,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011120226378_cantidadproducto.resx">
       <DependentUpon>202011120226378_cantidadproducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011181050586_compra.resx">
+      <DependentUpon>202011181050586_compra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011181107067_compra2.resx">
+      <DependentUpon>202011181107067_compra2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
