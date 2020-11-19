@@ -407,6 +407,7 @@
     <Content Include="Views\CarritoCompras\Compra.cshtml" />
     <Content Include="Views\Shared\_MenuSideBar.cshtml" />
     <Content Include="Views\Producto\productosLista.cshtml" />
+    <Content Include="Views\Producto\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

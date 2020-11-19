@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PDS2_Store.Models.Producto>
+
+<h2>Catalogo </h2>
+
+
+@ViewBag.Message
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4" style="padding:15px;">
+                <div style="display:inline-block; border:solid 1px #808080; padding:15px">
+                    <div>
+                        @if (item.Imagen != null)
+                        {
+                            <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Imagen))" class="img-responsive" style="height: 240px; width: 360px;">
+                        }
+                        else
+                        {
+                            <img src="~/Content/imagenes/Imagen_no_disponible.png" class="img-responsive">
+                        }
+                        <br />
+                        <h2 class="pull-right">$@item.UnitPrice</h2>
+                        <h2><a href="@Url.Action("Details", new { id = item.ProductoID })">@item.ProductName</a></h2>
+                        <br />
+                        <p class="text-justify">@item.Description.</p>
+                    </div>
+                    <br />
+                    <div class="ratings text-center">
+                        <p>
+                            <div id="rating1"></div>
+                            (10 reviews)
+                        </p>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
