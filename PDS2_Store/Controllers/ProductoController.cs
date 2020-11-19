@@ -49,6 +49,42 @@ namespace PDS2_Store.Controllers
             }
             return View(cat.ToList());
         }
+        //Es la barra de busqueda
+        public ActionResult Search(String searchString)
+        {
+            //searchString = "ps4";
+            var bus = from s in db.Productos select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //Este busca la palabra si existe en los productos
+                bus = bus.Where(p => p.ProductName.Contains(searchString));
+                ViewBag.Message = bus.Count() + " Prod";
+                if (bus.Count() == 0)
+                {
+                    //Si no encuentra en los productos, busca que exista la palabra en las subcategorias
+                    bus = db.Productos.Where(c => c.CatProducto.CatNombre.Contains(searchString));
+                    ViewBag.Message = bus.Count() + " SubCat";
+                    if (bus.Count() == 0)
+                    {
+                        ViewBag.Message = "Resultados no encontrados";
+
+                        //y si no encuentra en las subcategorias, busca en las categorias. Yo creo que este no deberia ponerlo
+                        /*bus = db.Productos.Where(v => v.CatProducto.Categoria.CategoryName.Contains(searchString));
+                        ViewBag.Message = bus.Count() + " Cat";
+                        if (bus.Count() == 0)
+                        {
+                          ViewBag.Message = "Resultados no encontrados";
+                            return HttpNotFound();
+                        }*/
+                        
+                    }
+                    
+                }
+                return View(bus.ToList());
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
 
         // GET: Categorias
         // Esta para la vista de los productos por categorias
