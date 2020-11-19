@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PDS2_Store.Models.Compra>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mis pedidos</h2>
+
+<table class="table" style="background-color:white">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DireccionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TarjetaId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaqueteriaId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Express)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCompra)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DireccionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TarjetaId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaqueteriaId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Express)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCompra)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.CompraId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,74 @@
+﻿@model PDS2_Store.Models.Compra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Compra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DireccionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DireccionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TarjetaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TarjetaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaqueteriaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaqueteriaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Express)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Express)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCompra)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompraId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

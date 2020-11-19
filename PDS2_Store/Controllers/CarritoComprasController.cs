@@ -109,7 +109,7 @@ namespace PDS2_Store.Controllers
             var cart = CarritoCompras.GetCart(HttpContext);
 
             ViewData["CartCount"] = cart.GetCount();
-            return PartialView("CartSummary");
+            return PartialView("_CartSummary");
         }
 
 
