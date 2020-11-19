@@ -58,12 +58,12 @@ namespace PDS2_Store.Controllers
             {
                 //Este busca la palabra si existe en los productos
                 bus = bus.Where(p => p.ProductName.Contains(searchString));
-                ViewBag.Message = bus.Count() + " Prod";
+                //ViewBag.Message = bus.Count() + " Prod";
                 if (bus.Count() == 0)
                 {
                     //Si no encuentra en los productos, busca que exista la palabra en las subcategorias
                     bus = db.Productos.Where(c => c.CatProducto.CatNombre.Contains(searchString));
-                    ViewBag.Message = bus.Count() + " SubCat";
+                    //ViewBag.Message = bus.Count() + " SubCat";
                     if (bus.Count() == 0)
                     {
                         ViewBag.Message = "Resultados no encontrados";
