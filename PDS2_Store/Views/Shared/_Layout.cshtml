@@ -28,20 +28,20 @@
                         <span class="icon-bar fa fa-bars active"></span>
                     </button>
                 </div>
-                    <div class="pull-left hidden-xs">
-                        <!--Barra de busqueda-->
-                        <form class="navbar-form" role="search" method="get" id="searchform" action="">
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <input type="text" class="form-control searchTerm" value="" placeholder="Buscar..." name="s" id="s">
-                                    <button type="submit" value="Search" class="btn searchButton"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>
+                <div class="pull-left hidden-xs">
+                    <!--Barra de busqueda-->
+                    <form class="navbar-form" role="search" method="get" id="searchform" action="">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <input type="text" class="form-control searchTerm" value="" placeholder="Buscar..." name="s" id="s">
+                                <button type="submit" value="Search" class="btn searchButton"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-                        </form>
-                    </div>
-                    
+                        </div>
+                    </form>
+                </div>
+
                 <div class="pull-right">
-                <!-- Hamburger Perfil -->
+                    <!-- Hamburger Perfil -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="glyphicon glyphicon-user active" ;></span>
                     </button>
@@ -53,7 +53,7 @@
                     <ul class="nav navbar-nav">
                         <!--Mis pedidos barra normal-->
                         <li>
-                            @if(User.IsInRole("cliente"))
+                            @if (User.IsInRole("cliente"))
                             {
                                 <a href="#" class="">Mis Pedidos</a>
                             }
@@ -104,18 +104,8 @@
         </div>
     </div>
 
-
-    <div class="wrapper">
-        <!-- The sidebar -->
-        <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Categorias</a>
-            <a href="#">Categoria</a>
-            <a href="#">Categoria</a>
-            <a href="#">Categoria</a>
-        </div>
-    </div>
-
+    <!--Sidebar-->
+    @Html.Action("_MenuSideBar", "Home")
 
     <div class="container body-content">
         @RenderBody()
@@ -189,8 +179,8 @@
 
 <script>
     function openNav() {
-        document.getElementById("mySidebar").style.width = "150px";
-        document.getElementById("main").style.marginLeft = "150px";
+        document.getElementById("mySidebar").style.width = "260px";
+        document.getElementById("main").style.marginLeft = "260px";
     }
 
     /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */

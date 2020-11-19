@@ -38,6 +38,17 @@ namespace PDS2_Store.Controllers
             return View(categ.ToList());
         }
 
+        //Al dar click en la categoria ir a su pag
+        public ActionResult productosLista(String id)
+        {
+            int x = Int32.Parse(id);
+            var cat = db.Productos.Where(c => c.CatProductoId == x);
+            if (cat == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cat.ToList());
+        }
 
         // GET: Categorias
         // Esta para la vista de los productos por categorias
@@ -144,10 +155,14 @@ namespace PDS2_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto, HttpPostedFileBase foto)
         {
             if (ModelState.IsValid)
             {
+                byte[] image = new byte[foto.ContentLength];
+                foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
+                producto.Imagen = image;
+
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

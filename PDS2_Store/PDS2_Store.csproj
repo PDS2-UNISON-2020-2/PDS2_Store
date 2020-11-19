@@ -293,6 +293,7 @@
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\CarritoCompras.cs" />
     <Compile Include="Models\CarritoComprasViewModels.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\Paqueterias.cs" />
     <Compile Include="Models\Direcciones.cs" />
     <Compile Include="Models\Tarjetas.cs" />
@@ -404,6 +405,8 @@
     <Content Include="Views\CarritoCompras\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\CarritoCompras\Compra.cshtml" />
+    <Content Include="Views\Shared\_MenuSideBar.cshtml" />
+    <Content Include="Views\Producto\productosLista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

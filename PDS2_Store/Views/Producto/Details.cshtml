@@ -16,7 +16,14 @@
             <div class="row">
                 <div class="col-md-6 product_img">
                     <!--Imagen-->
-                    <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.Imagen))" class="img-responsive">
+                    @if (Model.Imagen != null)
+                    {
+                        <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.Imagen))" class="img-responsive">
+                    }
+                    else
+                    {
+                        <img src="~/Content/imagenes/Imagen_no_disponible.png" class="img-responsive">
+                    }
                 </div>
                 <div class="col-md-6 product_content">
                     <!--ID-->
@@ -47,8 +54,8 @@
                         <!-- end col -->
                     </div>
                     <div class="space-ten"></div>
-                    <div class="btn-ground">
-                        @Html.ActionLink("Añadir A Carrito", "AddToCart", "CarritoCompras", new { id = Model.ProductoID }, htmlAttributes: new { @class = "btn  btn-primary glyphicon glyphicon-shopping-cart" }) |
+                    <div class="btn-ground text-center" style="padding-bottom: 30px">
+                        @Html.ActionLink("Añadir A Carrito", "AddToCart", "CarritoCompras", new { id = Model.ProductoID }, htmlAttributes: new { @class = "btn  btn-primary glyphicon glyphicon-shopping-cart" })
                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Comprar Ahora</button>
                     </div>
                 </div>
