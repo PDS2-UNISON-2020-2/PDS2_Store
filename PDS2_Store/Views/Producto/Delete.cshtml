@@ -41,7 +41,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Imagen)
+            @if (Model.Imagen != null)
+            {
+                <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.Imagen))" class="img-responsive  img-thumbnail" width="120" height="80">
+            }
+            else
+            {
+                <img src="~/Content/imagenes/Imagen_no_disponible.png" class="img-responsive img-thumbnail" width="120" height="80">
+            }
         </dd>
 
         <dt>

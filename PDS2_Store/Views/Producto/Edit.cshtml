@@ -8,7 +8,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Producto", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -36,8 +36,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            <!--Imagen-->
+            @if (Model.Imagen != null)
+            {
+                <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.Imagen))" class="img-responsive  img-thumbnail" width="120" height="80">
+            }
+            else
+            {
+                <img src="~/Content/imagenes/Imagen_no_disponible.png" class="img-responsive img-thumbnail" width="120" height="80">
+            }
+            <input type="file" id="foto" name="foto" class="form-control" />
         </div>
     </div>
 

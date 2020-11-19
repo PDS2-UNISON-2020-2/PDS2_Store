@@ -1,0 +1,271 @@
+﻿@model PDS2_Store.Models.MenuModel
+
+<div class="wrapper">
+    <!-- The sidebar -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Cerrar&times;</a>
+        <div class="sidebar-header">
+            <h3>Categorias</h3>
+        </div>
+        @using (Html.BeginForm("Index2", "Home"))
+        {
+            <div id="accordian">
+                <ul>
+                    <li>
+                        @foreach (var MenuItem in Model.MainMenuModel)
+                        {
+                            var SubMenuItem = Model.SubMenuModel.Where(m => m.MainMenuID == MenuItem.ID);
+                            <h3 class="dropdown-btn"><a> @MenuItem.MainMenuItem </a> <i class="fa fa-caret-down"></i></h3>
+                            if (SubMenuItem.Count() > 0)
+                            {
+                                <ul>
+                                    @foreach (var SubItem in SubMenuItem)
+                                    {
+                                        <li><a href="@Url.Action("productosLista", "Producto",new { id=@SubItem.SubMenuURL })">@SubItem.SubMenuItem</a></li>
+                                    }
+                                </ul>
+                            }
+                        }
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+
+
+<!--
+segunda opcion del menu
+
+    <button class="dropdown-btn">
+        Ropa, Zapatos y Accesorios
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Ropa Mujeres</a>
+        <a href="#">Ropa Hombres</a>
+        <a href="#">Zapatos Mujeres</a>
+        <a href="#">Zapatos Hombres</a>
+        <a href="#">Accesorios</a>
+    </div>
+
+    <button class="dropdown-btn">
+        Electrónicos
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Cámaras y Fotografía</a>
+        <a href="#">Celulares y Accesorios</a>
+        <a href="#">Computadoras personales</a>
+        <a href="#">Laptops</a>
+    </div>
+
+    <button class="dropdown-btn">
+        Bolsas, Maletas y Accesorios de Viaje
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Bolsas</a>
+        <a href="#">Maletas</a>
+        <a href="#">Accesorios</a>
+    </div>
+
+    <button class="dropdown-btn">
+        Instrumentos Musicales
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Guitarra</a>
+        <a href="#">Baterias</a>
+        <a href="#">Bajos</a>
+        <a href="#">Piano</a>
+        <a href="#">Violín</a>
+        <a href="#">Accesorios</a>
+    </div>
+
+    <button class="dropdown-btn">
+        Deportes y Aire Libre
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Béisbol</a>
+        <a href="#">Basquetbol</a>
+        <a href="#">Fútbol</a>
+        <a href="#">Pesca</a>
+        <a href="#">Pesas</a>
+        <a href="#">Aparatos Ejercicio</a>
+    </div>
+
+    <button class="dropdown-btn">
+        Videojuegos
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">PC</a>
+        <a href="#">xBox</a>
+        <a href="#">PlayStation</a>
+    </div>
+
+    <button class="dropdown-btn">
+        Vitaminas y Suplementos
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Proteínas</a>
+        <a href="#">Quemadores</a>
+        <a href="#">Vitaminas y Minerales</a>
+        <a href="#">Barras y Bebidas</a>
+        <a href="#">Herbales</a>
+    </div>
+</div>
+    -->
+
+<script>
+    $(document).ready(function () {
+        $("#accordian h3").click(function () {
+            $("#accordian ul ul").slideUp();
+            if (!$(this).next().is(":visible")) {
+                $(this).next().slideDown();
+            }
+        });
+    });
+</script>
+
+<script>
+    //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
+
+<style>
+
+    .sidebar-header {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+    }
+
+    /* Style the sidenav links and the dropdown button */
+    .dropdown-btn {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+        background-color: green;
+        color: white;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
+
+
+    #accordian {
+        width: 250px;
+        margin: 100px auto 0 auto;
+        color: white;
+        overflow-x: hidden; /* Disable horizontal scroll */
+    }
+        /*heading styles*/
+        #accordian h3 {
+            font-size: 12px;
+            line-height: 34px;
+            padding: 0 5px;
+            cursor: pointer;
+            /*fallback for browsers not supporting gradients*/
+            background: linear-gradient(#330760, #8720ed);
+        }
+
+            /*heading hover effect*/
+
+            #accordian h3:hover {
+                text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+            }
+
+            /*iconfont styles*/
+
+            #accordian h3 a {
+                color: white;
+                text-decoration: none;
+                font-size: 15px;
+                line-height: 27px;
+                padding: 0 15px;
+                /*transition for smooth hover animation*/
+            }
+
+                #accordian h3 a:hover {
+                    color: #E1E1E1;
+                }
+
+        /*list items*/
+
+        #accordian li {
+            list-style-type: none;
+            background: #330760;
+        }
+
+        /*links*/
+
+        #accordian ul ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 11px;
+            line-height: 27px;
+            display: block;
+            padding: 0 15px;
+            /*transition for smooth hover animation*/
+            transition: all 0.15s;
+        }
+
+            /*hover effect on links*/
+
+            #accordian ul ul li a:hover {
+                background: #8720ed;
+                border-left: 5px solid #ffffff;
+            }
+
+        /*Lets hide the non active LIs by default*/
+
+        #accordian ul ul {
+            display: none;
+        }
+
+        #accordian li.active ul {
+            display: block;
+        }
+</style>

@@ -44,6 +44,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #330760;
 }
 
 /* The sidebar menu */
@@ -54,10 +55,13 @@
     z-index: 9999; /* Stay on top */
     top: 0;
     left: 0;
-    background-color: #330760; /* morado*/
+    background-color: #330760;
+    /*Some cool shadow and glow effect*/
+    box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px rgba(255, 255, 255, 0.5);
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    font-family: 'Montserrat', sans-serif;
 }
 
 
