@@ -13,7 +13,7 @@ namespace PDS2_Store.Controllers
 {
     public class ComprasController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ProductContext db = new ProductContext();
 
         // GET: Compras
         public ActionResult Index()
