@@ -9,19 +9,21 @@
             <div class="col-md-4" style="padding:15px;">
                 <div style="display:inline-block; border:solid 1px #808080; padding:15px">
                     <div>
-                        @if (item.Imagen != null)
-                        {
-                            <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Imagen))" class="img-responsive"  style="height: 240px; width: 360px;">
-                        }
-                        else
-                        {
-                            <img src="~/Content/imagenes/Imagen_no_disponible.png" class="img-responsive">
-                        }
+                        <div class="image-container">
+                            @if (item.Imagen != null)
+                            {
+                                <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Imagen))" class="img-responsive" style="width: auto; height: 195px;">
+                            }
+                            else
+                            {
+                                <img src="~/Content/imagenes/Imagen_no_disponible.png" class="img-responsive" style="width: auto; height: 195px;">
+                            }
+                        </div>
                         <br />
-                        <h2 class="pull-right">$@item.UnitPrice</h2>
-                        <h2><a href="@Url.Action("Details", new { id = item.ProductoID })">@item.ProductName</a></h2>
+                        <h3 style="text-transform: capitalize;"><a href="@Url.Action("Details", new { id = item.ProductoID })">@item.ProductName</a></h3>
+                        <h2 class="">$@item.UnitPrice</h2>
                         <br />
-                        <p class="text-justify">@item.Description.</p>
+                        <p class="text-justify" style="text-transform: lowercase;">@item.Description.</p>
                     </div>
                     <br />
                     <div class="ratings text-center">
@@ -33,8 +35,14 @@
                     <br />
                 </div>
             </div>
-         }
+        }
     </div>
 </div>
+<style>
+    .image-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
 
 
