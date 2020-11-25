@@ -13,7 +13,6 @@ namespace PDS2_Store.Models
         [ScaffoldColumn(false)]
         public int VendedorId { get; set; }
 
-        [StringLength(128)]
         public string UserId { get; set; }
 
     }
