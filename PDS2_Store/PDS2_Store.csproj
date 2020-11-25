@@ -287,6 +287,10 @@
     <Compile Include="Migrations\202011181107067_compra2.Designer.cs">
       <DependentUpon>202011181107067_compra2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011250600384_cambio-modelo-vendedor.cs" />
+    <Compile Include="Migrations\202011250600384_cambio-modelo-vendedor.Designer.cs">
+      <DependentUpon>202011250600384_cambio-modelo-vendedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -450,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011181107067_compra2.resx">
       <DependentUpon>202011181107067_compra2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011250600384_cambio-modelo-vendedor.resx">
+      <DependentUpon>202011250600384_cambio-modelo-vendedor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
