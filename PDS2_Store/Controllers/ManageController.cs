@@ -458,7 +458,7 @@ namespace PDS2_Store.Controllers
                     TarRepo.CrearTarjeta(tar);
                     ViewBag.Message = "La tarjeta se agrego.";
                 }
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {
