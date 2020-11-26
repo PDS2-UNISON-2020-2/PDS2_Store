@@ -58,13 +58,13 @@
                 }
             </dd>
         *@
-        <dt>Autenticación de dos factores:</dt>
+        @*<dt>Autenticación de dos factores:</dt>
         <dd>
             <p>
                 No hay ningún proveedor de autenticación en dos fases configurado. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
                 para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases.
             </p>
-            @*@if (Model.TwoFactor)
+            @if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
@@ -83,8 +83,8 @@
                         <input type="submit" value="Habilitar" class="btn btn-link" />
                         </text>
                     }
-                }*@
-        </dd>
+                }
+        </dd>*@
     </dl>
 </div>
 Lo del perfil
@@ -111,6 +111,14 @@ Lo del perfil
         </div>
         <div class="panel-body">
             @Html.DisplayFor(model => model.FechadeNacimiento)
+        </div>
+    </div>
+    <div class="panel panel-info" style="margin: 1em;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Fecha de nacimiento</h3>
+        </div>
+        <div class="panel-body">
+            @Html.ActionLink("Administrar Tarjetas", "Tarjetas","Manage")
         </div>
     </div>
 </div>
