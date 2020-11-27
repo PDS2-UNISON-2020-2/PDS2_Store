@@ -124,6 +124,7 @@ namespace PDS2_Store.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            
             List<Correos> correos = await db.Correos.Where(t => t.PaqueteriasId == id).ToListAsync();
             List<Telefonos> telefonos = await db.Telefonos.Where(t => t.PaqueteriasId == id).ToListAsync();
             List<Paquete> paquete = await db.Paquete.Where(t => t.PaqueteriasId == id).ToListAsync();
@@ -133,6 +134,7 @@ namespace PDS2_Store.Controllers
             paqueterias.tel = telefonos;
             paqueterias.correo = correos;
             paqueterias.pqt = paquete;
+            paqueterias.des.Clear();
 
             db.Paqueterias.Remove(paqueterias);
             await db.SaveChangesAsync();
