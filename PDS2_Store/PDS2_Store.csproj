@@ -253,9 +253,14 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CarritoComprasController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\CorreosController.cs" />
+    <Compile Include="Controllers\DestinosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaqueteriasController.cs" />
+    <Compile Include="Controllers\PaquetesController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\TelefonosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -415,6 +420,31 @@
     <Content Include="Views\Producto\Search.cshtml" />
     <Content Include="Views\Compras\Details.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Paqueterias\Create.cshtml" />
+    <Content Include="Views\Paqueterias\Delete.cshtml" />
+    <Content Include="Views\Paqueterias\Details.cshtml" />
+    <Content Include="Views\Paqueterias\Edit.cshtml" />
+    <Content Include="Views\Paqueterias\Index.cshtml" />
+    <Content Include="Views\Telefonos\Create.cshtml" />
+    <Content Include="Views\Telefonos\Delete.cshtml" />
+    <Content Include="Views\Telefonos\Details.cshtml" />
+    <Content Include="Views\Telefonos\Edit.cshtml" />
+    <Content Include="Views\Telefonos\Index.cshtml" />
+    <Content Include="Views\Paquetes\Create.cshtml" />
+    <Content Include="Views\Paquetes\Delete.cshtml" />
+    <Content Include="Views\Paquetes\Details.cshtml" />
+    <Content Include="Views\Paquetes\Edit.cshtml" />
+    <Content Include="Views\Paquetes\Index.cshtml" />
+    <Content Include="Views\Correos\Create.cshtml" />
+    <Content Include="Views\Correos\Delete.cshtml" />
+    <Content Include="Views\Correos\Details.cshtml" />
+    <Content Include="Views\Correos\Edit.cshtml" />
+    <Content Include="Views\Correos\Index.cshtml" />
+    <Content Include="Views\Destinos\Create.cshtml" />
+    <Content Include="Views\Destinos\Delete.cshtml" />
+    <Content Include="Views\Destinos\Details.cshtml" />
+    <Content Include="Views\Destinos\Edit.cshtml" />
+    <Content Include="Views\Destinos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
