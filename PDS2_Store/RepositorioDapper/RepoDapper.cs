@@ -85,11 +85,6 @@ namespace PDS2_Store.RepositorioDapper
                 connection();
                 con.Open();
                 var parameters = new {
-                    @nombre = Req.Nombre,
-                    @apell = Req.Apellidos,
-                    @fecha_nac = Req.FechaNacimiento,
-                    @correo = Req.correo,
-                    @celular = Req.celular,
                     @rfc = Req.RFC,
                     @direccion = Req.Direccion,
                     @postal = Req.CodigoPostal,
@@ -130,9 +125,14 @@ namespace PDS2_Store.RepositorioDapper
         {
             try
             {
-                connection();   
+                connection();
                 con.Open();
-                con.Execute("dbo.Cambio_Estado_Solicitud", status, commandType: CommandType.StoredProcedure);
+                var parameters = new
+                {
+                    @estado = status.StatusId,
+                    @id = status.RequestId
+                };
+                con.Execute("dbo.Cambio_Estado_Solicitud", parameters, commandType: CommandType.StoredProcedure);
                 con.Close();
             }
             catch (Exception ex)
@@ -158,6 +158,7 @@ namespace PDS2_Store.RepositorioDapper
                 throw;
             }
         }
+
         //Saca el precio de envio
         public List<Paquete> GetPrecioEnvio(int paq, bool ex)
         {
@@ -237,7 +238,7 @@ namespace PDS2_Store.RepositorioDapper
                     @nombre = tarup.Nombre,
                     @numero = tarup.Numero,
                     @fecha = tarup.Fecha,
-                    @codigo = tarup.Codigo,
+                    @codig = tarup.Codigo,
                     @id = tarup.id
                 };
                 con.Execute("dbo.EditarTarjeta", parameters, commandType: CommandType.StoredProcedure);
@@ -250,7 +251,6 @@ namespace PDS2_Store.RepositorioDapper
         }
 
         //Falta probar que funcione bien desde aqui
-        //aun no estoy seguro, talvez modifique el procedure porque no se bien aun que hacer en caso de eliminar
         public bool BorrarTarjeta(int id)
         {
             try
@@ -321,7 +321,15 @@ namespace PDS2_Store.RepositorioDapper
             {
                 connection();
                 con.Open();
-                con.Execute("dbo.EditarDireccion", dirup, commandType: CommandType.StoredProcedure);
+                var parameters = new
+                {
+                    @Direccion = dirup.direccion,
+                    @Postal = dirup.CodigoPostal,
+                    @estado = dirup.Estado,
+                    @ciudad = dirup.Ciudad,
+                    @id = dirup.id
+                };
+                con.Execute("dbo.EditarDireccion", parameters, commandType: CommandType.StoredProcedure);
                 con.Close();
             }
             catch (Exception ex)
@@ -331,7 +339,6 @@ namespace PDS2_Store.RepositorioDapper
         }
 
         //Falta probar que funcione bien desde aqui
-        //aun no estoy seguro, lo mismo que las tarjetas, aun no estoy seguro de que hacer cuando se borren
         public bool BorrarDireccion(int id)
         {
             try

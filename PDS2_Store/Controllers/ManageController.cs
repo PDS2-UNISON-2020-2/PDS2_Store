@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -490,6 +491,82 @@ namespace PDS2_Store.Controllers
                 return View();
             }
         }        
+
+        // Esto no borra las tarjetas de la BD, solo las hace invalidas y ya nunca las vuelve a ver el usuario
+        //Falta probarla aqui
+        // GET: /Manage/BorrarTarjeta
+        public ActionResult BorrarTarjeta(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var userId = User.Identity.GetUserId();
+            RepoDapper TarRepo = new RepoDapper();
+            var tar = TarRepo.GetTarjetas(userId).Find(Tar => Tar.id == id);
+            if (tar == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tar);
+        }
+
+        // POST: /Manage/BorrarTarjeta
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BorrarTarjeta(int id)
+        {
+            try
+            {
+                RepoDapper TarRepo = new RepoDapper();
+                TarRepo.BorrarTarjeta(id);
+                return RedirectToAction("Index");
+               
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+        // Esto no borra las direcciones de la BD, solo las hace invalidas y ya nunca las vuelve a ver el usuario
+        //Falta probarla aqui
+        // GET: /Manage/BorrarDireccion
+        public ActionResult BorrarDireccion(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var userId = User.Identity.GetUserId();
+            RepoDapper DirRepo = new RepoDapper();
+            var dir = DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id);
+            if (dir == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dir);
+        }
+
+        // POST: /Manage/BorrarDireccion
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BorrarDireccion(int id)
+        {
+            try
+            {
+                RepoDapper TarRepo = new RepoDapper();
+                TarRepo.BorrarDireccion(id);
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
 
         protected override void Dispose(bool disposing)
         {
