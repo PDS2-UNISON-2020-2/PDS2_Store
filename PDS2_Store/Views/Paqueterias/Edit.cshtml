@@ -1,0 +1,222 @@
+﻿@model PDS2_Store.Models.Paqueterias
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+
+@{
+    ViewBag.Title = "Edit";
+    int a = 1;
+    int b = 1;
+    int c = 1;
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Paqueterias</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RFC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RFC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RFC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <h4>Sectores de entrega</h4>
+        <hr />
+        @foreach (var item in Model.des)
+        {
+            <div class="col-md-10">
+                <input type="checkbox" value="@item.Id" name="ids" /> @item.Region
+            </div>
+        }
+    </div>
+    <hr />
+    <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Lista de Telefonos</strong>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                <p>ID</p>
+            </th>
+            <th>
+                <p>Numero de telefono</p>
+            </th>
+            <a>@Html.ActionLink("Agregar", "Create", "Telefonos", new { id = Model.Id }, htmlAttributes: new { data_modal = "", @class = "<span class='glyphicon glyphicon-plus'></span> btn btn-primary pull-right" })</a>
+        </tr>
+        @foreach (var item in Model.tel)
+        {
+            <tr>
+                <td>
+                    @(a++)
+                    @Html.HiddenFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Editar", "Edit", "Telefonos", new { id = item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-default glyphicon glyphicon-pencil " })
+                        &nbsp;
+                        @Html.ActionLink("Eliminar", "Delete", "Telefonos", new { item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger glyphicon glyphicon-trash" })
+
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Lista de Correos</strong>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                <p>ID</p>
+            </th>
+            <th>
+                <p>Correo</p>
+            </th>
+            <a>@Html.ActionLink("Agregar", "Create", "Correos", new { id = Model.Id }, htmlAttributes: new { data_modal = "", @class = "<span class='glyphicon glyphicon-plus'></span> btn btn-primary pull-right" })</a>
+        </tr>
+        @foreach (var item in Model.correo)
+        {
+            <tr>
+                <td>
+                    @(b++)
+                    @Html.HiddenFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Editar", "Edit", "Correos", new { id = item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-default glyphicon glyphicon-pencil " })
+                        &nbsp;
+                        @Html.ActionLink("Eliminar", "Delete", "Correos", new { item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger glyphicon glyphicon-trash" })
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Lista de envios</strong>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                <p>ID</p>
+            </th>
+            <th>
+                <p>Tiempo de entrega</p>
+            </th>
+            <th>
+                <p>Precio</p>
+            </th>
+            <th>
+                <p>Express</p>
+            </th>
+            <a>@Html.ActionLink("Agregar", "Create", "Paquetes", new { id = Model.Id }, htmlAttributes: new { data_modal = "", @class = "<span class='glyphicon glyphicon-plus'></span> btn btn-primary pull-right" })</a>
+        </tr>
+        @foreach (var item in Model.pqt)
+        {
+            <tr>
+                <td>
+                    @(c++)
+                    @Html.HiddenFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasMin) - @Html.DisplayFor(modelItem => item.DiasMax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Express)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Editar", "Edit", "Paquetes", new { id = item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-default glyphicon glyphicon-pencil " })
+                        &nbsp;
+                        @Html.ActionLink("Eliminar", "Delete", "Paquetes", new { item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger glyphicon glyphicon-trash" })
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
