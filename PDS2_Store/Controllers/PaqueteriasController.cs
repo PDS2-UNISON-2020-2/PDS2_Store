@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using PDS2_Store.Models;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
@@ -20,7 +21,7 @@ namespace PDS2_Store.Controllers
         // GET: Paqueterias
         public async Task<ActionResult> Index()
         {
-            return View(await db.Paqueterias.ToListAsync());
+            return View(await db.Paqueterias.Where(p => p.Activo == true).ToListAsync());
         }
 
         // GET: Paqueterias/Details/5
@@ -64,7 +65,7 @@ namespace PDS2_Store.Controllers
                     Destinos n = await db.Destinos.FindAsync(d1);
                     paqueterias.des.Add(n);
                 }
-
+                paqueterias.Activo = true;
                 db.Paqueterias.Add(paqueterias);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -120,25 +121,19 @@ namespace PDS2_Store.Controllers
         }
 
         // POST: Paqueterias/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            
-            List<Correos> correos = await db.Correos.Where(t => t.PaqueteriasId == id).ToListAsync();
-            List<Telefonos> telefonos = await db.Telefonos.Where(t => t.PaqueteriasId == id).ToListAsync();
-            List<Paquete> paquete = await db.Paquete.Where(t => t.PaqueteriasId == id).ToListAsync();
 
-            Paqueterias paqueterias = await db.Paqueterias.FindAsync(id);
-
-            paqueterias.tel = telefonos;
-            paqueterias.correo = correos;
-            paqueterias.pqt = paquete;
-            paqueterias.des.Clear();
-
-            db.Paqueterias.Remove(paqueterias);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            var paq = new Paqueterias() { Id = id, Activo = false};
+            using(db)
+            {
+                db.Paqueterias.Attach(paq);
+                db.Entry(paq).Property(p => p.Activo).IsModified = true;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

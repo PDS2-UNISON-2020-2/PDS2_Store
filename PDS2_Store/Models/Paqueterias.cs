@@ -16,6 +16,7 @@ namespace PDS2_Store.Models
         public string Nombre { get; set; }
         public string RFC { get; set; }
         public string Direccion { get; set; }
+        public bool Activo { get; set; }
         public virtual ICollection<Paquete> pqt { get; set; }
         public virtual ICollection<Telefonos> tel { get; set; }
         public virtual ICollection<Correos> correo { get; set; }
