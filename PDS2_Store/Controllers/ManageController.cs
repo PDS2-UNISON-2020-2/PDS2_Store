@@ -417,37 +417,64 @@ namespace PDS2_Store.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    dir.UserId = User.Identity.GetUserId();
+                    string Username = User.Identity.GetUserId();
                     RepoDapper DirRepo = new RepoDapper();
+                    dir.UserId = Username;
                     DirRepo.CrearDireccion(dir);
                     ViewBag.Message = "La direccion se agrego.";
                 }
-                return View();
+                return RedirectToAction("Direcciones");
+
             }
             catch
             {
-                ViewBag.Message = "La tarjeta no se agrego.";
+                ViewBag.Message = "La direccion no se agrego.";
                 return View();
             }
         }
 
         // Falta probarlo, jala pero no me esta funcionando, no ejecuta el procedure parece
         // GET: /Manage/EditDireccion
-        public ActionResult EditDireccion(int id)
-        {
-            var userId = User.Identity.GetUserId();
-            RepoDapper DirRepo = new RepoDapper();
-            return View(DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id));
+         public ActionResult EditDireccion(int id)
+         {
+          var userId = User.Identity.GetUserId();
+          RepoDapper DirRepo = new RepoDapper();
+         return View(DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id));
         }
+     
         // POST: /Manage/EditDireccion
         [HttpPost]
         public ActionResult EditDireccion(Direccion dir)
         {
             try
             {
+               // string Username = User.Identity.GetUserId();
                 RepoDapper DirRepo = new RepoDapper();
+               // dir.userId = Username;
                 DirRepo.EditarDireccion(dir);
-                return RedirectToAction("Index");
+                return RedirectToAction("Direcciones");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        // GET: /Manage/DeleteDireccion
+        public ActionResult DeleteDireccion(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            RepoDapper DirRepo = new RepoDapper();
+            return View(DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id));
+        }
+        // POST: /Manage/DeleteDireccion
+        [HttpPost]
+        public ActionResult DeleteDireccion(Direccion dir)
+        {          
+            try
+            {            
+                RepoDapper DirRepo = new RepoDapper();                
+                DirRepo.BorrarDireccion(dir.id);
+                return RedirectToAction("Direcciones");
             }
             catch
             {

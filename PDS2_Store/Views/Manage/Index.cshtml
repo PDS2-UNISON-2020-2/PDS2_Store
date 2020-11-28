@@ -89,6 +89,15 @@
                 @Html.ActionLink("Administrar Tarjetas", "Tarjetas", "Manage")
             </div>
         </div>
+        <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Direcciones</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.Direcciones)
+                @Html.ActionLink("Administrar direcciones","Direcciones")
+            </div>
+        </div>
     </div>
 </div>
 
@@ -115,5 +124,6 @@
             </div>
         </div>
     </div>
+
 </div>
 

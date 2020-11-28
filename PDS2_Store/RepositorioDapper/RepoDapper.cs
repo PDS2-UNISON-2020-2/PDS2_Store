@@ -326,7 +326,7 @@ namespace PDS2_Store.RepositorioDapper
                     @estado = dir.Estado,
                     @ciudad = dir.Ciudad,
                     @userid = dir.UserId,
-                    @id = dir.id
+                    dir.id
                 };
                 con.Execute("dbo.CrearDireccion", parameters, commandType: CommandType.StoredProcedure);
                 con.Close();
