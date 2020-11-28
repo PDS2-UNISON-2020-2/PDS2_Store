@@ -489,7 +489,15 @@ namespace PDS2_Store.Controllers
             {
                 return View();
             }
-        }        
+        }
+
+        public ActionResult RemoveTarjeta(int id)
+        {
+           
+            RepoDapper TarRepo = new RepoDapper();
+            TarRepo.BorrarTarjeta(id);
+            return RedirectToAction("Tarjetas");
+        }
 
         protected override void Dispose(bool disposing)
         {

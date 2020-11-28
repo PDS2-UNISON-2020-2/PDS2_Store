@@ -43,7 +43,7 @@
         <td>
             @Html.ActionLink("Editar", "EditTarjeta","Manage", new { id=item.id },null) |
             
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+            @Html.ActionLink("Eliminar", "RemoveTarjeta","Manage", new { id=item.id },null)
         </td>
     </tr>
 }
