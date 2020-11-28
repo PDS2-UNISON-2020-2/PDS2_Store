@@ -490,7 +490,15 @@ namespace PDS2_Store.Controllers
             {
                 return View();
             }
-        }        
+        }
+
+        public ActionResult RemoveTarjeta(int id)
+        {
+           
+            RepoDapper TarRepo = new RepoDapper();
+            TarRepo.BorrarTarjeta(id);
+            return RedirectToAction("Tarjetas");
+        }
 
         // Esto no borra las tarjetas de la BD, solo las hace invalidas y ya nunca las vuelve a ver el usuario
         //Falta probarla aqui
