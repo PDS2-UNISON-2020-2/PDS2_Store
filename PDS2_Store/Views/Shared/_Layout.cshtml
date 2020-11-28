@@ -107,69 +107,68 @@
     <!--Sidebar-->
     @Html.Action("_MenuSideBar", "Home")
 
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top: 4em !important">
         @RenderBody()
-        <hr />
-        <!-- Pie de pag -->
-        <footer class="panel-footer">
-            <div class="container" style="background-color:#ffd800">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                        <ul class="list-inline mb-2">
-                            <li class="list-inline-item">
-                                <a href="#">Acerca de nosotros</a>
-                            </li>
-                            <li class="list-inline-item">&sdot;</li>
-                            <li class="list-inline-item">
-                                <a href="#">Contacto</a>
-                            </li>
-                            <li class="list-inline-item">&sdot;</li>
-                            <li class="list-inline-item">
-                                <a href="#">Terminos y condiciones</a>
-                            </li>
-                            <li class="list-inline-item">&sdot;</li>
-                            <li class="list-inline-item">
-                                <a href="#">Politicas de privacidad</a>
-                            </li>
-                        </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; PSD2 2020. Todos los derechos reservados.</p>
-                    </div>
-                    <div class="credit-cards" style="text-align: center; width: 100%">
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_visa.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_master.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_paypal.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_unionpay.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_linepay.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_711_pay.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_fm_pay.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_taishin.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_amex.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_ecpay.png" />
-                        <img height="40" src="https://shoplineimg.com/assets/footer/card_jcb.png" />
-                    </div>
-                    <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item mr-3">
-                                <a href="#">
-                                    <i class="fab fa-facebook fa-2x fa-fw"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item mr-3">
-                                <a href="#">
-                                    <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-instagram fa-2x fa-fw"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+    </div>
+    <!-- Pie de pag -->
+    <footer style="margin-bottom: -5em !important">
+        <div class="container" style="background-color:#330760; margin-top: 8em; width: 100% !important">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">Acerca de nosotros</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contacto</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Términos y condiciones</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Políticas de privacidad</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; PSD2 2020. Todos los derechos reservados.</p>
+                </div>
+                <div class="credit-cards" style="text-align: center; width: 100%">
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_visa.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_master.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_paypal.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_unionpay.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_linepay.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_711_pay.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_fm_pay.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_taishin.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_amex.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_ecpay.png" />
+                    <img height="40" src="https://shoplineimg.com/assets/footer/card_jcb.png" />
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

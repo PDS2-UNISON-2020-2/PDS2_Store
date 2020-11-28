@@ -86,6 +86,7 @@ namespace PDS2_Store.Models
         [Display(Name = "Nombre")]
         public string PrimerNombre { get; set; }
         [DataType(DataType.Text)]
+        [Display(Name = "Segundo Nombre")]
         public string SegundoNombre { get; set; }
         [DataType(DataType.Text)]
         [Display(Name = "Apellido Paterno")]
@@ -95,7 +96,7 @@ namespace PDS2_Store.Models
         public string ApellidoMaterno { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Fecha De Nacimiento")]
+        [Display(Name = "Fecha de nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 
 
