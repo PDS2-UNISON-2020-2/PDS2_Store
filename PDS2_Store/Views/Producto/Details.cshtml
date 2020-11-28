@@ -27,8 +27,8 @@
                 </div>
                 <div class="col-md-6 product_content">
                     <!--ID-->
-                    <h4>Product Id: <span>@Html.DisplayFor(model => model.ProductoID)</span></h4>
-                    <h4>Vendedor Id: <span>@Html.DisplayFor(model => model.Vendedor.UserId)</span></h4>
+                    <!--<h4>Product Id: <span>@Html.DisplayFor(model => model.ProductoID)</span></h4>-->
+                    <h4>Vendedor: <span>@Html.DisplayFor(model => model.Vendedor.UserId)</span></h4>
                     <!--Rating-->
                     <div class="rating">
                         <span class="glyphicon glyphicon-star"></span>
@@ -41,29 +41,36 @@
                     <!--Descripcion-->
                     <p style="text-transform: lowercase;">@Html.DisplayFor(model => model.Description)</p>
                     <!--Precio-->
-                    <h3 class="cost"><span class="glyphicon glyphicon-usd"></span> @Html.DisplayFor(model => model.UnitPrice)<small class="pre-cost"><span class="glyphicon glyphicon-usd"></span></small></h3>
-                    <div class="row">
+                    <h3 class="cost">@Html.DisplayFor(model => model.UnitPrice)</h3>
+                    <!--<div class="row">-->
                         <div class="col-md-4 col-sm-12">
                             <select class="form-control" name="select">
-                                <option value="" selected="">QTY</option>
+                                <option value="" selected="">-</option>
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
                             </select>
                         </div>
                         <!-- end col -->
-                    </div>
-                    <div class="space-ten"></div>
-                    <div class="btn-ground text-center" style="padding-bottom: 30px">
+                    <!--</div>-->
+                    <!--<div class="space-ten"></div>-->
+                    <!--<div class="btn-ground text-center" style="padding-bottom: 50px">-->
                         @Html.ActionLink("Añadir A Carrito", "AddToCart", "CarritoCompras", new { id = Model.ProductoID }, htmlAttributes: new { @class = "btn  btn-primary glyphicon glyphicon-shopping-cart" })
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Comprar Ahora</button>
-                    </div>
+                        <!--<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Comprar Ahora</button>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Comprar Ahora", "Index")
-</p>
+<!--<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>-->
 
