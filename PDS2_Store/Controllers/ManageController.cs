@@ -389,8 +389,9 @@ namespace PDS2_Store.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    dir.UserId = User.Identity.GetUserId();
+                    string Username = User.Identity.GetUserId();
                     RepoDapper DirRepo = new RepoDapper();
+                    dir.UserId = Username;
                     DirRepo.CrearDireccion(dir);
                     ViewBag.Message = "La direccion se agrego.";
                 }
@@ -398,7 +399,7 @@ namespace PDS2_Store.Controllers
             }
             catch
             {
-                ViewBag.Message = "La tarjeta no se agrego.";
+                ViewBag.Message = "La direccion no se agrego.";
                 return View();
             }
         }

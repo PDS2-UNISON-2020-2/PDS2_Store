@@ -243,7 +243,7 @@ namespace PDS2_Store.RepositorioDapper
                 con.Open();
                 var parameters = new { @userid = user };
                 IList<Direccion> ReqList = SqlMapper.Query<Direccion>(
-                                 con, "dbo.ListaDireccioness", parameters, commandType: CommandType.StoredProcedure).ToList();
+                                 con, "dbo.ListaDirecciones", parameters, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();
                 return ReqList.ToList();
             }

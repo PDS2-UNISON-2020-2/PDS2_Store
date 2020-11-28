@@ -21,6 +21,9 @@ namespace PDS2_Store.Models
         public string ApellidoPaterno { get; set; }
         public DateTime FechadeNacimiento { get; set; }        
         public string Email { get; set; }
+        public List<string> Direcciones { get; set; }
+
+
     }    
 
     public class ManageLoginsViewModel

@@ -25,73 +25,21 @@
             }
             ]
         </dd>
-        <dt>Inicios de sesión externos:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Administrar", "ManageLogins") ]
-        </dd>
-        @*
-            Los números de teléfono se pueden usar como una segunda fase de comprobación en un sistema de autenticación en dos fases.
-
-             Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
-                para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases mediante SMS.
-
-             Quite la marca de comentario del bloque siguiente después de configurar la autenticación en dos fases
-        *@
-        @*
-            <dt>Número de teléfono:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Quitar" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        <dt>Autenticación de dos factores:</dt>
-        <dd>
-            <p>
-                No hay ningún proveedor de autenticación en dos fases configurado. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
-                para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Habilitado
-                        <input type="submit" value="Deshabilitar" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Deshabilitada
-                        <input type="submit" value="Habilitar" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
     </dl>
+    <div>
+        <h3 class="panel-title">Nombre y apellidos: </h3>
+        @Html.DisplayFor(model => model.PrimerNombre) @Html.DisplayFor(model => model.SegundoNombre) @Html.DisplayFor(model => model.ApellidoPaterno) @Html.DisplayFor(model => model.ApellidoMaterno)
+    </div>
+    <div>
+
+    </div>
+
+
 </div>
-Lo del perfil
-<div class="col-md-9 admin content" id="profile">
+<div>
     <div class="panel panel-info" style="margin: 1em;">
         <div class="panel-heading">
-            <h3 class="panel-title">Nombre</h3>
+            <h3 class="panel-title">Nombre y apellidos: </h3>
         </div>
         <div class="panel-body">
             @Html.DisplayFor(model => model.PrimerNombre) @Html.DisplayFor(model => model.SegundoNombre) @Html.DisplayFor(model => model.ApellidoPaterno) @Html.DisplayFor(model => model.ApellidoMaterno)
@@ -99,7 +47,7 @@ Lo del perfil
     </div>
     <div class="panel panel-info" style="margin: 1em;">
         <div class="panel-heading">
-            <h3 class="panel-title">Email</h3>
+            <h3 class="panel-title">Email: </h3>
         </div>
         <div class="panel-body">
             @Html.DisplayFor(model => model.Email)
@@ -107,11 +55,21 @@ Lo del perfil
     </div>
     <div class="panel panel-info" style="margin: 1em;">
         <div class="panel-heading">
-            <h3 class="panel-title">Fecha de nacimiento</h3>
+            <h3 class="panel-title">Fecha de nacimiento: </h3>
         </div>
         <div class="panel-body">
             @Html.DisplayFor(model => model.FechadeNacimiento)
         </div>
     </div>
+    <div class="panel panel-info" style="margin: 1em;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Direcciones</h3>
+        </div>
+        <div class="panel-body">
+            @Html.DisplayFor(model => model.Direcciones)
+            @Html.ActionLink("Administrar direcciones","Direcciones")
+        </div>
+    </div>
+    
 </div>
 
