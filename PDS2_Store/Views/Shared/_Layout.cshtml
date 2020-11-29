@@ -4,18 +4,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title - PDS2</title>
+    <title>PDS2 - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("head", required: false)
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header container-fluid hidden-xs ">
         <img class="banner hidden-xs" alt="banner" src="~/Content/imagenes/banner.png" />
     </header>
 
-    <nav class="nav hidden-xs navbar-default" role="navigation" style="background-color:#851ded">
+    <nav class="nav hidden-xs navbar-default" role="navigation" style=" background-color: #8720ed">
         <div class="container">
             <div class="row">
                 <div class="navbar-header pull-left">
@@ -55,7 +57,7 @@
                         <li>
                             @if (User.IsInRole("cliente"))
                             {
-                                <a href="/Compras/Index" class="">Mis Pedidos</a>
+                                <a href="/Compras/Index" class="">Mis pedidos</a>
                             }
                         </li>
                     </ul>
@@ -67,7 +69,7 @@
     </nav>
 
     <!-- NavBar pantalla peque;a-->
-    <div class="navbar navbar-default visible-xs">
+    <div class="navbar navbar-default visible-xs" style="margin-top: -50px !important">
         <div class="container-fluid">
             <div class="row">
                 <!-- Home-->
@@ -107,25 +109,26 @@
     <!--Sidebar-->
     @Html.Action("_MenuSideBar", "Home")
 
-    <div class="container body-content" style="margin-top: 4em !important">
+    <div class="container body-content" style="margin-top: 2.5em !important; margin-bottom: 3em !important">
         @RenderBody()
     </div>
     <!-- Pie de pag -->
     <footer style="margin-bottom: -5em !important">
-        <div class="container" style="background-color:#330760; margin-top: 8em; width: 100% !important">
+        <div class="container" style="background-color:#330760; padding-top: 10px; width: 100% !important">
             <div class="row">
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <!--
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">Acerca de nosotros</a>
+                            <a href="#" style="color:lightgray">Acerca de nosotros</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Contacto</a>
+                            <a href="#" style="color:lightgray">Contacto</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Términos y condiciones</a>
+                            <a href="#" style="color:lightgray">Términos y condiciones</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
@@ -135,21 +138,21 @@
                         <li class="list-inline-item">
                             <a href="#">Políticas de privacidad</a>
                         </li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; PSD2 2020. Todos los derechos reservados.</p>
+                    </ul>-->
+                    <h5 style="color:lightgray">&copy; PDS2 2020. Todos los derechos reservados.</h5>
                 </div>
                 <div class="credit-cards" style="text-align: center; width: 100%">
                     <img height="40" src="https://shoplineimg.com/assets/footer/card_visa.png" />
                     <img height="40" src="https://shoplineimg.com/assets/footer/card_master.png" />
                     <img height="40" src="https://shoplineimg.com/assets/footer/card_paypal.png" />
-                    <img height="40" src="https://shoplineimg.com/assets/footer/card_unionpay.png" />
-                    <img height="40" src="https://shoplineimg.com/assets/footer/card_linepay.png" />
+                    <!--<img height="40" src="https://shoplineimg.com/assets/footer/card_unionpay.png" />-->
+                    <!--<img height="40" src="https://shoplineimg.com/assets/footer/card_linepay.png" />-->
                     <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_711_pay.png" />
                     <img height="40" src="https://shoplineimg.com/assets/footer/card_tw_fm_pay.png" />
-                    <img height="40" src="https://shoplineimg.com/assets/footer/card_taishin.png" />
+                    <!--<img height="40" src="https://shoplineimg.com/assets/footer/card_taishin.png" />-->
                     <img height="40" src="https://shoplineimg.com/assets/footer/card_amex.png" />
-                    <img height="40" src="https://shoplineimg.com/assets/footer/card_ecpay.png" />
-                    <img height="40" src="https://shoplineimg.com/assets/footer/card_jcb.png" />
+                    <!--<img height="40" src="https://shoplineimg.com/assets/footer/card_ecpay.png" />-->
+                    <!--<img height="40" src="https://shoplineimg.com/assets/footer/card_jcb.png" />-->
                 </div>
                 <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
                     <ul class="list-inline mb-0">
@@ -182,8 +185,8 @@
 
 <script>
     function openNav() {
-        document.getElementById("mySidebar").style.width = "260px";
-        document.getElementById("main").style.marginLeft = "260px";
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
     }
 
     /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */

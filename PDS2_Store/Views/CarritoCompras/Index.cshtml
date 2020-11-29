@@ -1,7 +1,17 @@
 ﻿@model PDS2_Store.Models.CarritoComprasViewModels
 
-<section class="shopping-cart dark">
-    <div class="container">
+@section head{
+    <style type="text/css">
+        body {
+            background-image: url('https://products.ls.graphics/paaatterns/images/027-p-1080.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+        }
+    </style>
+}
+<section class="shopping-cart dark modal-content">
+    <div class="container" style="padding-left: 0; padding-right: 32px">
         <div class="block-heading">
             <h2>Tu carrito <i class="fa fa-shopping-cart" aria-hidden="true"></i></h2>
             <p>Navega en PDS2.com y agrega los productos que buscas.</p>
@@ -31,7 +41,8 @@
                                                 <div class="col-md-3 product-name">
                                                     <div class="product-name">
                                                         <a href="#">
-                                                        @Html.ActionLink(item.Product.ProductName,"Details","Producto", new { id = item.ProductoId}, null)</a>
+                                                            @Html.ActionLink(item.Product.ProductName, "Details", "Producto", new { id = item.ProductoId }, null)
+                                                        </a>
                                                         <div class="product-info">
                                                             <div>Descripcion: <span class="value">@item.Product.Description</span></div>
                                                         </div>
@@ -42,11 +53,11 @@
                                                     <p></p>
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
-                                                            @Html.ActionLink(" ", "RemoveFromCartItem", "CarritoCompras", new { id = item.ItemId }, htmlAttributes: new { @class = "btn btn-default btn-number glyphicon glyphicon-minus" })
+                                                            @Html.ActionLink(" ", "RemoveFromCartItem", "CarritoCompras", new { id = item.ItemId }, htmlAttributes: new { @class = "btn btn-normal btn-number glyphicon glyphicon-minus" })
                                                         </span>
                                                         <input type="text" name="quant[1]" class="form-control input-number text-center" value=@item.Quantity min="1" max=@item.Product.Cantidad readonly="readonly">
                                                         <span class="input-group-btn">
-                                                            @Html.ActionLink(" ", "AddToCart", "CarritoCompras", new { id = item.ProductoId }, htmlAttributes: new { @class = "btn btn-default btn-number glyphicon glyphicon-plus" })
+                                                            @Html.ActionLink(" ", "AddToCart", "CarritoCompras", new { id = item.ProductoId }, htmlAttributes: new { @class = "btn btn-normal btn-number glyphicon glyphicon-plus" })
                                                         </span>
                                                     </div>
                                                     <p></p>
@@ -77,7 +88,7 @@
                         <div class="summary-item"><span class="text">Subtotal (@(Model.CartItems.Sum(item => item.Quantity)) productos):</span><span class="price">$ @Model.CartTotal </span></div>
                         <div class="summary-item"><span class="text">IVA</span><span class="price">$0</span></div>
                         <div class="summary-item"><span class="text">Total</span><span class="price">$ @Model.CartTotal </span></div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Compra", "CarritoCompras")'" >Proceder a pagar </button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Compra", "CarritoCompras")'">Proceder a pagar </button>
                         <button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Home")'">Sigue Comprando <i class="fa fa-angle-left"></i></button>
                     </div>
                 </div>

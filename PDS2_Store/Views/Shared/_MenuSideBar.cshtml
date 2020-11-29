@@ -3,9 +3,9 @@
 <div class="wrapper">
     <!-- The sidebar -->
     <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Cerrar&times;</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="sidebar-header">
-            <h2 class="text-center">Categorías</h2>
+            <h3 class="text-center">Categorías</h3>
         </div>
         @using (Html.BeginForm("Index2", "Home"))
         {
@@ -15,7 +15,7 @@
                         @foreach (var MenuItem in Model.MainMenuModel)
                         {
                             var SubMenuItem = Model.SubMenuModel.Where(m => m.MainMenuID == MenuItem.ID);
-                            <h3 class="dropdown-btn"><a> @MenuItem.MainMenuItem  <i class="fa fa-caret-down pull-right"></i></a></h3>
+                            <h3 class="dropdown-btn"><a> @MenuItem.MainMenuItem  <i class="fa fa-caret-down pull-right" style="padding-top: 5px"></i></a></h3>
                             if (SubMenuItem.Count() > 0)
                             {
                                 <ul>
@@ -153,7 +153,7 @@ segunda opcion del menu
 <style>
 
     .sidebar-header {
-        font-size: 20px;
+        font-size: 16px !important;
         color: white;
     }
 
@@ -177,20 +177,25 @@ segunda opcion del menu
         color: white;
     }
 
+    /*h3.dropdown-btn.active a {
+        color: #f1d302 !important;
+    }*/
+
     #accordian {
+        font-family: Montserrat;
         width: 250px;
-        margin: 100px auto 0 auto;
+        margin: 0 0 0 0;
         color: white;
         overflow-x: hidden; /* Disable horizontal scroll */
     }
         /*heading styles*/
         #accordian h3 {
-            font-size: 12px;
-            line-height: 34px;
-            padding: 0 5px;
+            line-height: 24px;
+            padding: 4px 4px 4px 6px;
             cursor: pointer;
             /*fallback for browsers not supporting gradients*/
-            background: linear-gradient(#330760, #8720ed);
+            background: #8720ed;
+            border-radius: 8px;
         }
 
             /*heading hover effect*/
@@ -204,14 +209,16 @@ segunda opcion del menu
             #accordian h3 a {
                 color: white;
                 text-decoration: none;
-                font-size: 15px;
-                line-height: 27px;
-                padding: 0 15px;
-                /*transition for smooth hover animation*/
+                font-size: 14px;
+                padding: 0 8px;
             }
 
                 #accordian h3 a:hover {
-                    color: #E1E1E1;
+                    color: #f1d302;
+                }
+
+                #accordian h3 active {
+                    color: black;
                 }
 
         /*list items*/
@@ -226,10 +233,10 @@ segunda opcion del menu
         #accordian ul ul li a {
             color: white;
             text-decoration: none;
-            font-size: 11px;
-            line-height: 27px;
+            font-size: 14px;
+            line-height: 22px;
+            padding: 6px 8px 6px 8px;
             display: block;
-            padding: 0 15px;
             /*transition for smooth hover animation*/
             transition: all 0.15s;
         }
@@ -237,7 +244,8 @@ segunda opcion del menu
             /*hover effect on links*/
 
             #accordian ul ul li a:hover {
-                background: #8720ed;
+                color: #330760;
+                background: #f1d302;
                 border-left: 5px solid #ffffff;
             }
 
@@ -245,6 +253,11 @@ segunda opcion del menu
 
         #accordian ul ul {
             display: none;
+            padding: 0 0 0 30px;
+        }
+
+        #accordian ul {
+            padding: 0 10px 0 10px;
         }
 
         #accordian li.active ul {
