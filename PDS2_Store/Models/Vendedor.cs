@@ -28,5 +28,8 @@ namespace PDS2_Store.Models
         public string Ciudad { get; set; }
         [StringLength(128)]
         public string UserId { get; set; }
+        [Display(Name = "Estado de la solicitud")]
+        public string Stat { get; set; }
+
     }
 }

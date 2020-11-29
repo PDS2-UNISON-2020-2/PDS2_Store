@@ -30,7 +30,8 @@ namespace PDS2_Store.Models
         public int PhoneNumber { get; set; }
         public string Estado { get; set; }
         public string Ciudad { get; set; }
+
         [Display(Name = "Estado de la solicitud")]
-        public string State { get; set; }
+        public string Stat { get; set; }
     }
 }
