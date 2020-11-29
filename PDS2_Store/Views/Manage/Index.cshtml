@@ -31,14 +31,6 @@
             @Html.ActionLink("Administrar", "ManageLogins") ]
         </dd>
         @*
-            Los números de teléfono se pueden usar como una segunda fase de comprobación en un sistema de autenticación en dos fases.
-
-             Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
-                para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases mediante SMS.
-
-             Quite la marca de comentario del bloque siguiente después de configurar la autenticación en dos fases
-        *@
-        @*
             <dt>Número de teléfono:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None")
@@ -58,67 +50,69 @@
                 }
             </dd>
         *@
-        @*<dt>Autenticación de dos factores:</dt>
-        <dd>
-            <p>
-                No hay ningún proveedor de autenticación en dos fases configurado. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
-                para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases.
-            </p>
-            @if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Habilitado
-                        <input type="submit" value="Deshabilitar" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Deshabilitada
-                        <input type="submit" value="Habilitar" class="btn btn-link" />
-                        </text>
-                    }
-                }
-        </dd>*@
+        <!--Lo del perfil-->
     </dl>
 </div>
-Lo del perfil
-<div class="col-md-9 admin content" id="profile">
-    <div class="panel panel-info" style="margin: 1em;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Nombre</h3>
+
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Nombre</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.PrimerNombre) @Html.DisplayFor(model => model.SegundoNombre) @Html.DisplayFor(model => model.ApellidoPaterno) @Html.DisplayFor(model => model.ApellidoMaterno)
+            </div>
         </div>
-        <div class="panel-body">
-            @Html.DisplayFor(model => model.PrimerNombre) @Html.DisplayFor(model => model.SegundoNombre) @Html.DisplayFor(model => model.ApellidoPaterno) @Html.DisplayFor(model => model.ApellidoMaterno)
+        <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Email</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+        <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fecha de nacimiento</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.FechadeNacimiento)
+            </div>
+        </div>
+        <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tarjetas</h3>
+            </div>
+            <div class="panel-body">
+                @Html.ActionLink("Administrar Tarjetas", "Tarjetas", "Manage")
+            </div>
         </div>
     </div>
-    <div class="panel panel-info" style="margin: 1em;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Email</h3>
-        </div>
-        <div class="panel-body">
-            @Html.DisplayFor(model => model.Email)
-        </div>
-    </div>
-    <div class="panel panel-info" style="margin: 1em;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Fecha de nacimiento</h3>
-        </div>
-        <div class="panel-body">
-            @Html.DisplayFor(model => model.FechadeNacimiento)
-        </div>
-    </div>
-    <div class="panel panel-info" style="margin: 1em;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Tarjetas De Credito</h3>
-        </div>
-        <div class="panel-body">
-            @Html.ActionLink("Administrar Tarjetas", "Tarjetas","Manage")
+</div>
+
+<div class="row">
+    <div class="jumbotron bg-white" style="background-color:white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="display-4">Empiece a vender hoy!</h1>
+                    <p class="lead">
+                        Tus productos frente a los millones de clientes que buscan en PDS2.com todos los días.
+                    </p>
+                    <hr class="my-4" />
+                    <p>
+                        Registrate como vendedor.
+                    </p>
+                    <a class="btn btn-primary btn-lg" style="background-color:#622ce2" href="/Manage/VerificarRegistroVendedor" role="button">
+                        Vender con nosotros
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://cdn.dribbble.com/users/1128531/screenshots/4961572/cover.jpg" class="img-responsive" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

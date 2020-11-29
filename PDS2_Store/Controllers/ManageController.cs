@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -333,6 +335,30 @@ namespace PDS2_Store.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+
+        public ActionResult VerificarRegistroVendedor()
+        {
+            var UserId = User.Identity.GetUserId();
+            RepoDapper Repo = new RepoDapper();
+            List<Request> Req = Repo.GetSolicitud(UserId);
+            if (Req.Count() != 0)
+            {
+                return RedirectToAction("VerSolicitud");
+            }
+            else
+            {
+                return RedirectToAction("Solicitud");
+            }
+        }
+
+        public ActionResult VerSolicitud()
+        {
+            var UserId = User.Identity.GetUserId();
+            RepoDapper Repo = new RepoDapper();
+            List<Request> Req = Repo.GetSolicitud(UserId);
+            return View(Req);
+        }
+
         //Prueba para ver si jala el storeprocedure
         // GET: /Manage/Solicitud
         public ActionResult Solicitud()
@@ -343,18 +369,19 @@ namespace PDS2_Store.Controllers
         //Si funciona
         // POST: /Manage/Solicitud
         [HttpPost]
-        public ActionResult Solicitud(Request re)
+        public ActionResult Solicitud(Request Req)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    re.UserId = User.Identity.GetUserId();
-                    RepoDapper Repo = new RepoDapper();
-                    Repo.LlenarSolicitud(re);
+                    Req.UserId = User.Identity.GetUserId();
+                    RepoDapper Repo = new RepoDapper();                    
+                    Repo.LlenarSolicitud(Req);
                     ViewBag.Message = "Su solicitud se envio.";
                 }
-                return View();
+                //return View();
+                return RedirectToAction("Index");
             }
             catch
             {

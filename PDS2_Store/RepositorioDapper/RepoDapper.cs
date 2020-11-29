@@ -90,7 +90,8 @@ namespace PDS2_Store.RepositorioDapper
                     @postal = Req.CodigoPostal,
                     @estado = Req.Estado,
                     @ciudad = Req.Ciudad,
-                    @userid = Req.UserId };
+                    @userid = Req.UserId,
+                    @id = Req.id};
                 con.Execute("dbo.LlenarSolicitud", parameters, commandType: CommandType.StoredProcedure);
                 con.Close();
             }
@@ -138,6 +139,28 @@ namespace PDS2_Store.RepositorioDapper
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        //Lista de Solicitudes (seria solo una la que buscamos)
+        //Funciona, manda la lista (debe ser solo una) solicitudes del cliente para ser vendedor
+        public List<Request> GetSolicitud(string user)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @userid = user };
+                IList<Request> ReqList = SqlMapper.Query<Request>(
+                                 con, "dbo.Estado_Solicitud", parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                con.Close();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

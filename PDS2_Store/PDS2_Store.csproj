@@ -448,6 +448,10 @@
     <Content Include="Views\Manage\Tarjetas.cshtml" />
     <Content Include="Views\Manage\AddTarjeta.cshtml" />
     <Content Include="Views\Manage\EditTarjeta.cshtml" />
+    <Content Include="Views\Manage\Solicitud.cshtml" />
+    <Content Include="Views\Manage\VerSolicitud.cshtml" />
+    <Content Include="Views\Admin\GetRequests.cshtml" />
+    <Content Include="Views\Admin\EditRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

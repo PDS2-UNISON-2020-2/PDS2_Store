@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,12 @@ namespace PDS2_Store.Models
         public int RequestId { get; set; }
     }
 
+    public class Statu
+    {
+        public int Id { get; set; }
+        public string Stat { get; set; }
+    }
+
     public class RequestViewModel
     {
         [Display(Name = "ID de la solicitud")]
@@ -30,7 +37,9 @@ namespace PDS2_Store.Models
         public int PhoneNumber { get; set; }
         public string Estado { get; set; }
         public string Ciudad { get; set; }
+
         [Display(Name = "Estado de la solicitud")]
-        public string State { get; set; }
+        public string Stat { get; set; }
     }
+
 }
