@@ -1,13 +1,12 @@
 ﻿@model PDS2_Store.Models.Compra
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Compra</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,6 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CompraId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CompraId }) |
+    @Html.ActionLink("Regresar", "Index")
 </p>

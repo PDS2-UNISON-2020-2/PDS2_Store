@@ -1,11 +1,27 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "PDS2 - Más que solo compras";
 }
 
-<div class="jumbotron" style="background-image: url('https://image.freepik.com/foto-gratis/mujer-feliz-levantando-bolsas-papel_23-2148339237.jpg')">
+@section head{
+    <style type="text/css">
+        body {
+            background-image: url('/Content/imagenes/027-p-1080-fade.png');
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: contain;
+            margin: 0;
+        }
+    </style>
+}
+
+<div class="jumbotron" style="
+        background: rgb(217,221,230);
+        background-image: url('https://image.freepik.com/foto-gratis/mujer-feliz-levantando-bolsas-papel_23-2148339237.jpg'), linear-gradient(180deg, rgba(217,221,230,1) 0%, rgba(203,206,217,1) 100%);
+        background-repeat: no-repeat;
+        margin-top: -1.5em">
     <h1>Bienvenido a PDS2</h1>
     <p class="lead">Las mejores ofertas. La mejor experiencia.</p>
-    <p><a href="#" class="btn btn-primary btn-lg">Ver mas ... &raquo;</a></p>
+    <!---<p><a href="#" class="btn btn-primary btn-lg">Ver mas ... &raquo;</a></p>-->
 </div>
 
 
@@ -20,15 +36,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="https://informationstrategyrsm.files.wordpress.com/2015/09/deprives-you-of-tangibility.jpg" alt="Shopping">
+            <a href="/Producto/Details/62"><img src="/Content/imagenes/Productos/Carrusel/PS5.png" alt="Playstation 5"></a>
         </div>
 
         <div class="item">
-            <img src="https://informationstrategyrsm.files.wordpress.com/2015/09/deprives-you-of-tangibility.jpg" alt="Shopping">
+            <a href="/Producto/Details/60"><img src="/Content/imagenes/Productos/Carrusel/PS4 bundle.png" alt="Playstation 4"></a>
         </div>
 
         <div class="item">
-            <img src="https://informationstrategyrsm.files.wordpress.com/2015/09/deprives-you-of-tangibility.jpg" alt="Shopping">
+            <a href="/Producto/Details/61"><img src="/Content/imagenes/Productos/Carrusel/Switch.png" alt="Nintendo Switch"></a>
         </div>
     </div>
 
@@ -44,23 +60,23 @@
 </div>
 
 
-<div class="row">
+<div class="row" style="margin-top: 4em">
     <div class="col-sm-6">
-        <img class="img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/91nWAV%2BB9%2BL._AC_SL1500_.jpg" alt="Card image cap">
+        <img class="img-thumbnail" src="/Content/imagenes/Productos/Home/pantallalg.jpg" alt="Card image cap">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="margin-bottom: 2.5em">
                 <h3 class="card-title">LG 27QN600-B 27" QHD (2560 x 1440) Pantalla IPS con FreeSync, sRGB 99% Gama de Colores</h3>
-                <p class="card-text">Precio: $6999.99</p>
+                <p class="card-text">Precio: <b>$6999.99</b></p>
                 <a href="/Producto/Details/54" class="btn btn-primary">Ver producto</a>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card">
-            <img class="img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/61lm7h18PCL._AC_SX679_.jpg" alt="Card image cap">
-            <div class="card-body">
+            <img class="img-thumbnail" src="/Content/imagenes/Productos/Home/bolsatoto.jpg" alt="Card image cap">
+            <div class="card-body" style="margin-bottom: 2.5em">
                 <h3 class="card-title">Tote Bolsa para Mujer PU Cuero - Moda Bolso de Mano con Asa Bandolera Gran Capacidad Suave</h3>
-                <p class="card-text">Precio: $585.00</p>
+                <p class="card-text">Precio: <b>$585.00</b></p>
                 <a href="/Producto/Details/55" class="btn btn-primary">Ver producto</a>
             </div>
         </div>
@@ -69,20 +85,20 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="card">
-            <img class="img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/611ArPpFIrL._AC_SL1000_.jpg" alt="Card image cap">
-            <div class="card-body">
+            <img class="img-thumbnail" src="/Content/imagenes/Productos/Home/escudotoallas.jpg" alt="Card image cap">
+            <div class="card-body" style="margin-bottom: 2.5em">
                 <h3 class="card-title">Escudo Toallitas Húmedas Desinfectantes para Superficies, Paquete con 80 Toallitas</h3>
-                <p class="card-text">Precio: $75.00</p>
+                <p class="card-text">Precio: <b>$75.00</b></p>
                 <a href="/Producto/Details/57" class="btn btn-primary">Ver producto</a>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card">
-            <img class="img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/816WyR3lT4L._AC_SL1500_.jpg" alt="Card image cap">
-            <div class="card-body">
+            <img class="img-thumbnail" src="/Content/imagenes/Productos/Home/cubrebocas.jpg" alt="Card image cap">
+            <div class="card-body" style="margin-bottom: 2.5em">
                 <h3 class="card-title">SUNCOO Disposable Face Mask Dust Particle 3-Layer Design - Pack of 50</h3>
-                <p class="card-text">Precio: $648.27</p>
+                <p class="card-text">Precio: <b>$648.27</b></p>
                 <a href="/Producto/Details/56" class="btn btn-primary">Ver producto</a>
             </div>
         </div>
@@ -91,20 +107,20 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="card">
-            <img class="img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/61eDgiaEEVL._AC_SL1000_.jpg" alt="Card image cap">
-            <div class="card-body">
+            <img class="img-thumbnail" src="/Content/imagenes/Productos/Home/paquetesombras.jpg" alt="Card image cap">
+            <div class="card-body" style="margin-bottom: 2.5em">
                 <h3 class="card-title">Iluminador, Rubor y Bronzer en Polvo Cheek</h3>
-                <p class="card-text">Precio: $160.00</p>
+                <p class="card-text">Precio: <b>$160.00</b></p>
                 <a href="/Producto/Details/58" class="btn btn-primary">Ver producto</a>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card">
-            <img class="img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/710tBBpAFhL._AC_SL1500_.jpg" alt="Card image cap">
-            <div class="card-body">
+            <img class="img-thumbnail" src="/Content/imagenes/Productos/Home/rubor1.jpg" alt="Card image cap">
+            <div class="card-body" style="margin-bottom: 2.5em">
                 <h3 class="card-title">Iluminador cy glow up - rose - CYZONE</h3>
-                <p class="card-text">Precio: $144.81</p>
+                <p class="card-text">Precio: <b>$144.81</b></p>
                 <a href="/Producto/Details/59" class="btn btn-primary">Ver producto</a>
             </div>
         </div>
