@@ -4,7 +4,7 @@
     ViewBag.Title = "AddTarjeta";
 }
 
-<h2>AddTarjeta</h2>
+<h2>Agregar tarjeta</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TarjetaViewModel</h4>
+        <h4>Tarjeta</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "h4 control-label col-md-2"})
+            @Html.LabelFor(model => model.Numero, "Número" ,htmlAttributes: new { @class = "h4 control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "input-lg form-control", @minlength = "13", @maxlength = "16" } })
                 @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "h4 control-label col-md-2"})
+            @Html.LabelFor(model => model.Codigo,"Código", htmlAttributes: new { @class = "h4 control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "input-lg form-control", @minlength = "3", @maxlength = "4" } })
                 @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Registrar" class="btn btn-default" />
             </div>
         </div>
     </div>

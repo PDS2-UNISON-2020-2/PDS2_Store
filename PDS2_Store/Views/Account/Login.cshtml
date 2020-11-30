@@ -16,7 +16,7 @@
                 <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
                 <p id="profile-name" class="profile-name-card"></p>
                 <form class="form-signin">
-                    <p class="text-center">Ingrese con direccion de correo</p>
+                    <p class="text-center">Ingrese con dirección de correo</p>
                     <span id="reauth-email" class="reauth-email"></span>
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
                         @Html.CheckBoxFor(m => m.RememberMe)
                         @Html.LabelFor(m => m.RememberMe)
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" value="Iniciar sesión" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" value="Iniciar sesión" type="submit">Iniciar sesión</button>
                 </form><!-- /form -->
                 <a href="#" class="forgot-password">
                     @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")

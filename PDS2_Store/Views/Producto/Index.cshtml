@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -36,7 +36,7 @@
                 </th>
                 <th>
                     <!-- Html.DisplayNameFor(model => model.CatProducto.CatNombre) -->
-                    Categoria
+                    Categoría
                 </th>
                 <th>
                     Detalles
@@ -68,7 +68,7 @@
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.Description,"Descripción del producto")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Cantidad)
