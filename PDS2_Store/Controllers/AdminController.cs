@@ -7,7 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using Dapper;
 
 namespace PDS2_Store.Controllers
 {
@@ -26,7 +29,6 @@ namespace PDS2_Store.Controllers
         {
             RepoDapper Repo = new RepoDapper();
             List<RequestViewModel> requestViewModel = Repo.GetRequests();
-            Debug.WriteLine(requestViewModel.Count());
             return View(requestViewModel);
         }
 
@@ -58,21 +60,33 @@ namespace PDS2_Store.Controllers
             }
         }
 
-        // GET: Admin/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Admin/EditRequests/5
+        public ActionResult EditRequests(int id)
         {
-            return View();
+            List<Statu> StatuList = new List<Statu>();
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                StatuList = db.Query<Statu>("Select * From Statu").ToList();
+            }
+            ViewBag.Statu = new SelectList(StatuList, "Id", "Stat");
+            var userId = User.Identity.GetUserId();
+            RepoDapper DirRepo = new RepoDapper();
+            return View(DirRepo.GetRequests().Find(Dir => Dir.id == id));
         }
 
-        // POST: Admin/Edit/5
+        // POST: Admin/EditRequests/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditRequests(int id, int Statu)
         {
-            try
+             try
             {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                RequestStatus statu = new RequestStatus();
+                statu.RequestId = id;
+                statu.StatusId = Statu;
+                RepoDapper Repo = new RepoDapper();
+                Repo.Cambio_de_estado(statu);
+                return RedirectToAction("GetRequests");
             }
             catch
             {

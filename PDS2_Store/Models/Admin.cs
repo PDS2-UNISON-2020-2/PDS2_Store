@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +16,12 @@ namespace PDS2_Store.Models
     {
         public int StatusId { get; set; }
         public int RequestId { get; set; }
+    }
+
+    public class Statu
+    {
+        public int Id { get; set; }
+        public string Stat { get; set; }
     }
 
     public class RequestViewModel
@@ -34,4 +41,5 @@ namespace PDS2_Store.Models
         [Display(Name = "Estado de la solicitud")]
         public string Stat { get; set; }
     }
+
 }
