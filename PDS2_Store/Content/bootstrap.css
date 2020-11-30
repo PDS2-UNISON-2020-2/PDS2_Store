@@ -153,7 +153,7 @@
 
 /* Header/logo Title */
 .header {
-    height: 200px;
+    height: 180px;
     width: auto; /* needed */
     /* inner img is centered horizontally */
     vertical-align: top;
@@ -184,7 +184,15 @@ html {
 body {
     margin: 0;
 }
+/*
+    body a {
+        color: #6251ac ;
+    }
 
+        body a:hover {
+            color: rebeccapurple;
+        }
+    */
 article,
 aside,
 details,
@@ -4092,30 +4100,29 @@ fieldset[disabled] a.btn {
 
 .btn-default {
     color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background-color: rebeccapurple;
+    border-color: #330760;
+    box-shadow: inset 0px 0px 0px 1px #8720ed;
 }
 
     .btn-default:focus,
     .btn-default.focus {
         color: #fff;
-        background-color: #286090;
-        border-color: #122b40;
+        background-color: rebeccapurple;
     }
 
     .btn-default:hover {
         color: #fff;
-        background-color: #286090;
-        border-color: #204d74;
+        background-color: #52297a;
     }
 
     .btn-default:active,
     .btn-default.active,
     .open > .dropdown-toggle.btn-default {
         color: #fff;
-        background-color: #286090;
+        background-color: #52297a;
         background-image: none;
-        border-color: #204d74;
+        box-shadow: inset 0px 0px 0px 2px #330760;
     }
 
         .btn-default:active:hover,
@@ -4127,9 +4134,9 @@ fieldset[disabled] a.btn {
         .btn-default:active.focus,
         .btn-default.active.focus,
         .open > .dropdown-toggle.btn-default.focus {
-            color: #333;
-            background-color: #d4d4d4;
-            border-color: #8c8c8c;
+            color: #fff;
+            background-color: #4c2673;
+            box-shadow: inset 0px 0px 0px 1px #330760;
         }
 
     .btn-default.disabled:hover,
@@ -4141,13 +4148,12 @@ fieldset[disabled] a.btn {
     .btn-default.disabled.focus,
     .btn-default[disabled].focus,
     fieldset[disabled] .btn-default.focus {
-        color: #fff;
-        background-color: #204d74;
-        border-color: #122b40;
+        background-color: rebeccapurple;
+        border-color: #330760;
     }
 
     .btn-default .badge {
-        color: #337ab7;
+        color: rebeccapurple;
         background-color: #fff;
     }
 
@@ -4213,30 +4219,29 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background-color: rebeccapurple;
+    border-color: #330760;
+    box-shadow: inset 0px 0px 0px 1px #8720ed;
 }
 
     .btn-primary:focus,
     .btn-primary.focus {
         color: #fff;
-        background-color: #286090;
-        border-color: #122b40;
+        background-color: rebeccapurple;
     }
 
     .btn-primary:hover {
         color: #fff;
-        background-color: #286090;
-        border-color: #204d74;
+        background-color: #52297a;
     }
 
     .btn-primary:active,
     .btn-primary.active,
     .open > .dropdown-toggle.btn-primary {
         color: #fff;
-        background-color: #286090;
+        background-color: #52297a;
         background-image: none;
-        border-color: #204d74;
+        box-shadow: inset 0px 0px 0px 2px #330760;
     }
 
         .btn-primary:active:hover,
@@ -4249,8 +4254,8 @@ fieldset[disabled] a.btn {
         .btn-primary.active.focus,
         .open > .dropdown-toggle.btn-primary.focus {
             color: #fff;
-            background-color: #204d74;
-            border-color: #122b40;
+            background-color: #4c2673;
+            box-shadow: inset 0px 0px 0px 1px #330760;
         }
 
     .btn-primary.disabled:hover,
@@ -4262,12 +4267,12 @@ fieldset[disabled] a.btn {
     .btn-primary.disabled.focus,
     .btn-primary[disabled].focus,
     fieldset[disabled] .btn-primary.focus {
-        background-color: #337ab7;
-        border-color: #2e6da4;
+        background-color: rebeccapurple;
+        border-color: #330760;
     }
 
     .btn-primary .badge {
-        color: #337ab7;
+        color: rebeccapurple;
         background-color: #fff;
     }
 
@@ -6133,7 +6138,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     color: white;
     margin-top: 0;
     margin-bottom: 0;
-    background-color: #851ded;
+    background-color: #7e4ead;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -7598,17 +7603,17 @@ button.list-group-item-danger {
     }
 
 .panel-info {
-    border-color: #bce8f1;
+    border-color: rgba(0, 0, 0, 0.20);
 }
 
     .panel-info > .panel-heading {
-        color: #31708f;
-        background-color: #d9edf7;
-        border-color: #bce8f1;
+        color: white;
+        background-color: #7e4ead;
+        border-color: rgba(0, 0, 0, 0.20);
     }
 
         .panel-info > .panel-heading + .panel-collapse > .panel-body {
-            border-top-color: #bce8f1;
+            border-top-color: rgba(0, 0, 0, 0.20);
         }
 
         .panel-info > .panel-heading .badge {

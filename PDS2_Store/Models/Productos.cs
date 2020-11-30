@@ -15,11 +15,11 @@ namespace PDS2_Store.Models
         [ScaffoldColumn(false)]
         public int ProductoID { get; set; }
 
-        [Required(ErrorMessage = "Se requiere un titulo del producto")]
+        [Required(ErrorMessage = "Se requiere un título del producto")]
         [StringLength(100), Display(Name = "Nombre")]
         public string ProductName { get; set; }
 
-        [StringLength(10000), Display(Name = "Descripcion del producto"), DataType(DataType.MultilineText)]
+        [StringLength(10000), Display(Name = "Descripción del producto"), DataType(DataType.MultilineText)]
         [DefaultValue("El vendedor no agrego una descripcion.")]
         public string Description { get; set; }
 
@@ -32,7 +32,7 @@ namespace PDS2_Store.Models
         [Display(Name = "Cantidad disponible")]
         public int Cantidad { get; set; }
 
-        [Display(Name = "Categoria")]
+        [Display(Name = "Categoría")]
         public int CatProductoId { get; set; }
 
         [Display(Name = "Vendedor")]
