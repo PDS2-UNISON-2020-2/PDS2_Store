@@ -97,6 +97,7 @@
                             </li>
                         }
 
+            @Html.LabelFor(model => model.Express, "Envío Express", htmlAttributes: new { @class = "control-label col-md-2" })
                         <li class="list-group-item d-flex justify-content-between bg-light">
                             <div class="text-success">
                                 <h6 class="my-0">Cupon</h6>
@@ -118,7 +119,7 @@
                     <form class="card form-inline">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <input type="text" class="form-control pull-left col-xs-5" placeholder="Promo code">
+                                <input type="text" class="form-control pull-left col-xs-5" placeholder="Código promo">
                                 <button class="btn btn-secondary pull-right" type="button">
                                     Redimir
                                 </button>

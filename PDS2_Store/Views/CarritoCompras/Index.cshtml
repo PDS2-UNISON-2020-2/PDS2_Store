@@ -44,7 +44,7 @@
                                                             @Html.ActionLink(item.Product.ProductName, "Details", "Producto", new { id = item.ProductoId }, null)
                                                         </a>
                                                         <div class="product-info">
-                                                            <div>Descripcion: <span class="value">@item.Product.Description</span></div>
+                                                            <div>Descripción: <span class="value">@item.Product.Description</span></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="summary">
-                        <h3>Summary</h3>
+                        <h3>Resumen de su orden</h3>
                         <div class="summary-item"><span class="text">Subtotal (@(Model.CartItems.Sum(item => item.Quantity)) productos):</span><span class="price">$ @Model.CartTotal </span></div>
                         <div class="summary-item"><span class="text">IVA</span><span class="price">$0</span></div>
                         <div class="summary-item"><span class="text">Total</span><span class="price">$ @Model.CartTotal </span></div>
