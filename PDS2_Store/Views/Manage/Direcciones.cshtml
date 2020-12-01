@@ -7,7 +7,7 @@
 <h2>Direcciones</h2>
 
 <p>
-    @Html.ActionLink("Añadir dirección", "AddDireccion")
+    @Html.ActionLink("Añadir dirección", "AddDireccion", "Manage")
 </p>
 <table class="table">
     <tr>
@@ -41,8 +41,8 @@
             @Html.DisplayFor(modelItem => item.Ciudad)
         </td>
         <td>
-            @Html.ActionLink("Editar", "EditDireccion", new { id=item.id }) |            
-            @Html.ActionLink("Eliminar", "EliminaDireccion", new { id=item.id })
+            @Html.ActionLink("Editar", "EditDireccion","Manage", new { id=item.id }, null) |           
+            @Html.ActionLink("Eliminar", "DeleteDireccion", "Manage", new { id=item.id }, null)
         </td>
     </tr>
 }

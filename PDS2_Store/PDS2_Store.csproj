@@ -396,6 +396,8 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Manage\Direcciones.cshtml" />
     <Content Include="Views\Manage\AddDireccion.cshtml" />
+    <Content Include="Views\Manage\EditDireccion.cshtml" />
+    <Content Include="Views\Manage\DeleteDireccion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

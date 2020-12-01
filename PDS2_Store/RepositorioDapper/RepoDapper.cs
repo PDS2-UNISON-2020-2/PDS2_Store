@@ -285,7 +285,15 @@ namespace PDS2_Store.RepositorioDapper
             {
                 connection();
                 con.Open();
-                con.Execute("dbo.EditarDireccion", dirup, commandType: CommandType.StoredProcedure);
+                var parameters = new
+                {
+                    @Direccion = dirup.direccion,
+                    @Postal = dirup.CodigoPostal,
+                    @estado = dirup.Estado,
+                    @ciudad = dirup.Ciudad,
+                    @id = dirup.id
+                };
+                con.Execute("dbo.EditarDireccion", parameters, commandType: CommandType.StoredProcedure);
                 con.Close();
             }
             catch (Exception ex)
