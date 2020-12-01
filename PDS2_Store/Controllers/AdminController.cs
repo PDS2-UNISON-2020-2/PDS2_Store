@@ -93,12 +93,23 @@ namespace PDS2_Store.Controllers
                     using (var context = new ApplicationDbContext())
                     {
                         var usermanager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-
                         string clave= User.Identity.GetUserId();
-                        usermanager.AddToRole(clave,"Admin");
+                        usermanager.AddToRole(clave,"vendedor");
                         context.SaveChanges();
                     }
-
+                }
+                else
+                {
+                    if(statu.StatusId== 4)
+                    {
+                        using (var context = new ApplicationDbContext())
+                        {
+                            var usermanager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                            string clave = User.Identity.GetUserId();
+                            usermanager.RemoveFromRole(clave, "vendedor");
+                            context.SaveChanges();
+                        }
+                    }
                 }
            
 
