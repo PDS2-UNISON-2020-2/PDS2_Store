@@ -63,5 +63,10 @@ namespace PDS2_Store.Controllers
 
             return ObjSubMenu;
         }
+
+        public ActionResult FAQ()
+        {
+            return View();
+        }
     }
 }
