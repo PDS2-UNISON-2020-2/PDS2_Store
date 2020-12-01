@@ -407,11 +407,17 @@ namespace PDS2_Store.Controllers
 
         // Falta probarlo, jala pero no me esta funcionando, no ejecuta el procedure parece
         // GET: /Manage/EditDireccion
-        public ActionResult EditDireccion(int id)
+     //   public ActionResult EditDireccion(int id)
+     //   {
+     //       var userId = User.Identity.GetUserId();
+     //       RepoDapper DirRepo = new RepoDapper();
+     //       return View(DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id));
+    //    }
+        public ActionResult EditDireccion()
         {
             var userId = User.Identity.GetUserId();
             RepoDapper DirRepo = new RepoDapper();
-            return View(DirRepo.GetDirecciones(userId).Find(Dir => Dir.id == id));
+            return View(DirRepo.GetDirecciones(userId));
         }
         // POST: /Manage/EditDireccion
         [HttpPost]
