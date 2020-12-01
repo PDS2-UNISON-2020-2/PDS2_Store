@@ -65,6 +65,14 @@ namespace PDS2_Store
 
             }
 
+            if (!roleManager.RoleExists("vendedor"))
+            {
+                var role = new IdentityRole();
+                role.Name = "vendedor";
+                roleManager.Create(role);
+
+            }
+
             // creating Creating Employee role   
             if (!roleManager.RoleExists("empleado"))
             {
