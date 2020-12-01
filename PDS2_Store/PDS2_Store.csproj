@@ -456,6 +456,7 @@
     <Content Include="Views\Manage\AddDireccion.cshtml" />
     <Content Include="Views\Manage\EditDireccion.cshtml" />
     <Content Include="Views\Manage\DeleteDireccion.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
