@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using Dapper;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace PDS2_Store.Controllers
 {
@@ -86,9 +87,24 @@ namespace PDS2_Store.Controllers
                 statu.StatusId = Statu;
                 RepoDapper Repo = new RepoDapper();
                 Repo.Cambio_de_estado(statu);
+               
+                if(statu.StatusId == 2)
+                {
+                    using (var context = new ApplicationDbContext())
+                    {
+                        var usermanager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                        string clave= User.Identity.GetUserId();
+                        usermanager.AddToRole(clave,"Admin");
+                        context.SaveChanges();
+                    }
+
+                }
+           
+
                 return RedirectToAction("GetRequests");
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
