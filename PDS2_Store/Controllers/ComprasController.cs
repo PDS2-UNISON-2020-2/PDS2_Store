@@ -50,7 +50,7 @@ namespace PDS2_Store.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompraId,UserId,DireccionId,TarjetaId,PaqueteriaId,Express,Total,FechaCompra")] Compra compra)
+        public ActionResult Create(Compra compra)
         {
             if (ModelState.IsValid)
             {

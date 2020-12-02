@@ -21,7 +21,13 @@ namespace PDS2_Store.Controllers
         // GET: Paqueterias
         public async Task<ActionResult> Index()
         {
-            return View(await db.Paqueterias.Where(p => p.Activo == true).ToListAsync());
+            return View(await db.Paqueterias.Include(x => x.pqt).Where(p => p.Activo == true).ToListAsync());
+        }
+
+        // GET: PaqueteriasParcial
+        public async Task<ActionResult> ListaPaqueterias()
+        {
+            return View(await db.Paqueterias.Include(x => x.pqt).Where(p => p.Activo == true).ToListAsync());
         }
 
         // GET: Paqueterias/Details/5

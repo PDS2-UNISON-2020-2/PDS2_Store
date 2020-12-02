@@ -165,13 +165,13 @@ namespace PDS2_Store.RepositorioDapper
         }
 
         //Lista de Paqueteria para compras
-        public List<PaqueteriaCompraViewModel> GetEnvios()
+        public List<Paqueterias> GetEnvios()
         {
             try
             {
                 connection();
                 con.Open();
-                IList<PaqueteriaCompraViewModel> ReqList = SqlMapper.Query<PaqueteriaCompraViewModel>(
+                IList<Paqueterias> ReqList = SqlMapper.Query<Paqueterias>(
                                  con, "dbo.ListaPaqueteriaCompra").ToList();
                 con.Close();
                 return ReqList.ToList();
@@ -183,13 +183,13 @@ namespace PDS2_Store.RepositorioDapper
         }
 
         //Saca el precio de envio
-        public List<Paquete> GetPrecioEnvio(int paq, bool ex)
+        public List<Paquete> GetPrecioEnvio(int p, int paq, bool ex)
         {
             try
             {
                 connection();
                 con.Open();
-                var parameters = new { @paqueteid = paq, @express = ex };
+                var parameters = new { @paqueteriaid = p, @paqueteid = paq, @express = ex };
                 IList<Paquete> ReqList = SqlMapper.Query<Paquete>(
                                  con, "dbo.CostoEnvio", parameters, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();

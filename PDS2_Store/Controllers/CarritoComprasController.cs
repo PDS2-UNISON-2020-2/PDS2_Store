@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dapper;
 using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
 using PDS2_Store.RepositorioDapper;
+using System.Data.Entity;
+
 
 namespace PDS2_Store.Controllers
 {
@@ -118,10 +125,32 @@ namespace PDS2_Store.Controllers
         public ActionResult Compra()
         {
             var userid = User.Identity.GetUserId();
+            
+
+
             RepoDapper EmpRepo = new RepoDapper();
             ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
             ViewBag.DireccionID = new SelectList(EmpRepo.GetDirecciones(userid), "id", "Direccion");
-            ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre");
+            ViewBag.DireccionID2 = EmpRepo.GetDirecciones(userid);
+            ViewBag.TarjetaId2 = EmpRepo.GetTarjetas(userid);
+            //ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre");
+
+            PaqueteriasContext paqueteriasDB = new PaqueteriasContext();
+            List<Paqueterias> p = paqueteriasDB.Paqueterias.Include(x => x.pqt).Where(t => t.Activo == true).ToList();
+            ViewBag.PaqueteriaId = p;
+
+            var cart = CarritoCompras.GetCart(this.HttpContext);
+            ViewBag.Total = cart.GetTotal();
+
+            List<Cart> carrito = cart.GetCartItems();
+            ViewBag.Carrito = carrito;
+            ViewBag.CarritoTotal = carrito.Count();
+
+            foreach (var item in ViewBag.TarjetaId2)
+            {
+            }
+
+
             return View();
         }
 
@@ -135,22 +164,33 @@ namespace PDS2_Store.Controllers
             RepoDapper EmpRepo = new RepoDapper();
             ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
             ViewBag.DireccionID = new SelectList(EmpRepo.GetDirecciones(userid), "id", "Direccion");
-            ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre");
+            ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre", compra.PaqueteriaId);
+
+            PaqueteriasContext paqueteriasDB = new PaqueteriasContext();
+            int _PaqueteriasId = paqueteriasDB.Paquete.Where(x => x.Id == compra.PaqueteriaId).Select(x => x.PaqueteriasId).FirstOrDefault();
+            int _precioEnvio = (int)paqueteriasDB.Paquete.Where(x => x.Id == compra.PaqueteriaId).Select(x => x.Precio).FirstOrDefault();
+
+            Debug.WriteLine("Tarjeta seleccionada " + compra.TarjetaId);
+            Debug.WriteLine("Paqueteria seleccionada "+ _PaqueteriasId + " "+ compra.PaqueteriaId);
+            Debug.WriteLine("Direccion seleccionada "+compra.DireccionId);
+            
+            compra.UserId = userid;
+            compra.FechaCompra = DateTime.Now;
+            compra.PaqueteriaId = _PaqueteriasId;
+
+            var cart = CarritoCompras.GetCart(this.HttpContext);
+            int _subtotal = (int)cart.GetTotal();
+            int _total = _precioEnvio + _subtotal;
+            compra.Total = _total;
+
             try
             {
-                compra.UserId = userid;
-                compra.FechaCompra = DateTime.Now;
 
-                var envio = EmpRepo.GetPrecioEnvio(compra.PaqueteriaId, compra.Express);
-                var en = envio.First();
                 carroDB.Compras.Add(compra);
                 carroDB.SaveChanges();
-                ViewBag.Message = en.Precio;
-                 var cart = CarritoCompras.GetCart(this.HttpContext);
-                cart.CreateOrder(compra, en.Precio);
+                cart.CreateOrder(compra, _precioEnvio);
 
-                return RedirectToAction("index", "Home");
-
+                return RedirectToAction("Index", "Compras");
             }
             catch
             {
