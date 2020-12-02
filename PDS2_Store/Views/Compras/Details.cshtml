@@ -1,4 +1,4 @@
-﻿@model PDS2_Store.Models.Compra
+﻿@model IEnumerable<PDS2_Store.Models.MisPedidosDetallesViewModel>
 
 @{
     ViewBag.Title = "Detalles";
@@ -9,65 +9,98 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+        @foreach (var item in Model)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.CompraId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.CompraId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DireccionId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DireccionId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.Direccion)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TarjetaId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CodigoPostal)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TarjetaId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.CodigoPostal)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PaqueteriaId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PaqueteriaId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.Estado)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Express)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Express)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.Ciudad)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Titular)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.Titular)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCompra)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaCompra)
-        </dd>
+            <dd>
+                @Html.DisplayFor(modelitem => item.Numero)
+            </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelitem => item.Fecha)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelitem => item.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaCompra)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelitem => item.FechaCompra)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelitem => item.Total)
+            </dd>
+        }
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.CompraId }) |
     @Html.ActionLink("Regresar", "Index")
 </p>

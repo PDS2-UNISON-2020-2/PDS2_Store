@@ -11,10 +11,10 @@ namespace PDS2_Store.Models
     public class Cart
     {
         [Key]
-        public int ItemId { get; set; }
+        public int CartId { get; set; }
 
         //Este va ser el ID con el que se asocie a el usuario
-        public string CartId { get; set; }
+        public string UserId { get; set; }
 
         [Display(Name = "Cantidad del producto")]
         public int Quantity { get; set; }

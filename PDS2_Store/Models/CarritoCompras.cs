@@ -29,7 +29,7 @@ namespace PDS2_Store.Models
         {
             // Get the matching cart and product instances
             var cartItem = carroDB.Carts.SingleOrDefault(
-                c => c.CartId == CarritoId
+                c => c.UserId == CarritoId
                 && c.ProductoId == producto.ProductoID);
 
             if (cartItem == null)
@@ -38,7 +38,7 @@ namespace PDS2_Store.Models
                 cartItem = new Cart
                 {
                     ProductoId = producto.ProductoID,
-                    CartId = CarritoId,
+                    UserId = CarritoId,
                     Quantity = 1,
                     DateCreated = DateTime.Now
                 };
@@ -58,8 +58,8 @@ namespace PDS2_Store.Models
         {
             // Get the cart
             var cartItem = carroDB.Carts.Single(
-                cart => cart.CartId == CarritoId
-                && cart.ItemId == id);
+                cart => cart.UserId == CarritoId
+                && cart.CartId == id);
 
             int itemCount = 0;
 
@@ -84,8 +84,8 @@ namespace PDS2_Store.Models
         {
             // Get the cart
             var cartItems = carroDB.Carts.Where(
-                cart => cart.CartId == CarritoId
-                && cart.ItemId == id);
+                cart => cart.UserId == CarritoId
+                && cart.CartId == id);
 
             foreach (var cartItem in cartItems)
             {
@@ -98,7 +98,7 @@ namespace PDS2_Store.Models
         public void EmptyCart()
         {
             var cartItems = carroDB.Carts.Where(
-                cart => cart.CartId == CarritoId);
+                cart => cart.UserId == CarritoId);
 
             foreach (var cartItem in cartItems)
             {
@@ -111,14 +111,14 @@ namespace PDS2_Store.Models
         public List<Cart> GetCartItems()
         {
             return carroDB.Carts.Where(
-                cart => cart.CartId == CarritoId).ToList();
+                cart => cart.UserId == CarritoId).ToList();
         }
 
         public int GetCount()
         {
             // Regresa el numero de productos en el carrito
             int? count = (from cartItems in carroDB.Carts
-                          where cartItems.CartId == CarritoId
+                          where cartItems.UserId == CarritoId
                           select (int?)cartItems.Quantity).Sum();
             // Return 0 if all entries are null
             return count ?? 0;
@@ -130,7 +130,7 @@ namespace PDS2_Store.Models
             // de cada producto por su cantidad y se suma todo para
             // obtener el total.
             decimal? total = (from cartItems in carroDB.Carts
-                              where cartItems.CartId == CarritoId
+                              where cartItems.UserId == CarritoId
                               select (int?)cartItems.Quantity *
                               cartItems.Product.UnitPrice).Sum();
 
@@ -197,11 +197,11 @@ namespace PDS2_Store.Models
         public void MigrateCart(string userName)
         {
             var shoppingCart = carroDB.Carts.Where(
-                c => c.CartId == CarritoId);
+                c => c.UserId == CarritoId);
 
             foreach (Cart item in shoppingCart)
             {
-                item.CartId = userName;
+                item.UserId = userName;
             }
             carroDB.SaveChanges();
         }

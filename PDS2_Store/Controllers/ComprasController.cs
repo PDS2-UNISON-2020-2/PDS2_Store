@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
+using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
@@ -18,8 +19,10 @@ namespace PDS2_Store.Controllers
         // GET: Compras
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var comprasList = db.Compras.Where(x => x.UserId == userId).ToList();
+            var userid = User.Identity.GetUserId();
+            RepoDapper Repo = new RepoDapper();
+            var comprasList = Repo.GetMisPedidos(userid);
+            //var comprasList = db.Compras.Where(x => x.UserId == userId).ToList();
 
             return View(comprasList);
         }
@@ -31,7 +34,8 @@ namespace PDS2_Store.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Compra compra = db.Compras.Find(id);
+            RepoDapper Repo = new RepoDapper();
+            var compra = Repo.GetMisPedidosDetalles(id);
             if (compra == null)
             {
                 return HttpNotFound();

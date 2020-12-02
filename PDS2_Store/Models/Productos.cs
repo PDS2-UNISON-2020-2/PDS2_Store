@@ -38,6 +38,8 @@ namespace PDS2_Store.Models
         [Display(Name = "Vendedor")]
         public int VendedorID { get; set; }
 
+        public bool? Activo { get; set; }
+
         public virtual CatProducto CatProducto { get; set; }
 
         public virtual Vendedor Vendedor { get; set; }
