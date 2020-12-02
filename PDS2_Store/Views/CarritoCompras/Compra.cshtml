@@ -1,49 +1,153 @@
 ﻿@model PDS2_Store.Models.Compra
 
+@{ 
+    int num = 0;
+ }
+
 @using (Html.BeginForm("Compra", "CarritoCompras", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TarjetaId, "Tarjeta", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TarjetaId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TarjetaId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container wow fadeIn recibo-compra" style="background-color:#ffff; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)";>
+            <!-- Heading -->
+            <h2 class="my-5 h2 text-center">Revisa Compra</h2>
+            <hr />
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-8 mb-4">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card content-->
+                        <form class="card-body">
+                            <!--address-->
+                            <div class="row">
+                                <div class="form-group col-md-offset-1">
+                                    @Html.LabelFor(model => model.DireccionId, "Direcciones", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("DireccionID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DireccionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DireccionId, "Direccion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DireccionID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DireccionId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <hr>
+                            @foreach (var item in ViewBag.TarjetaId2)
+                            {
+                                <div class="row">
+                                    <div class="form-group col-md-offset-1">
+                                        <div class="card col-sm-6 mb-3" style="border-color:#ffffff">
+                                            <div class="card-body">
+                                                <h5 class="card-title align-middle fa fa-credit-card"> @item.Nombre</h5>
+                                                <p class="card-text"><input class="custom-control-input" checked required type="radio" name="TarjetaId" id="exampleRadios1" value=@item.id> @item.Numero</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PaqueteriaId, "Paqueteria", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PaqueteriaID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaqueteriaId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="row">
+                                <div class="form-group col-md-offset-1">
+                                    @foreach (var item in ViewBag.PaqueteriaId)
+                                    {
+                                        foreach (var a in item.pqt)
+                                        {
+                                            <div class="custom-control custom-radio  col-md-2">
+                                                @item.Nombre entrega entre @a.DiasMin y @a.DiasMax días
+                                                <input class="custom-control-input checkbox" checked required type="radio" 
+                                                       name="PaqueteriaId" id="exampleRadios1" value=@a.Id
+                                                       onclick="addTheValue(@a.Precio)";">
+                                                <label class="custom-control-label" for="exampleRadios1">
+                                                    $@a.Precio MXN
+                                                </label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+                            <button class="btn btn-primary btn-lg btn-block" type="submit" value="Comprar">Confirmar compra</button>
+                            <hr />
+                        </form>
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-4 mb-4">
+                    <!-- Heading -->
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Carrito</span>
+                        <span class="badge badge-secondary badge-pill">@ViewBag.CarritoTotal</span>
+                    </h4>
+                    <!-- Cart -->
+                    <ul class="list-group mb-3 z-depth-1" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+                        @foreach (var item in ViewBag.Carrito)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">@item.Product.ProductName</h6>
+                                    <small class="text-muted">@item.Product.Description</small>
+                                </div>
+                                <span class="text-muted">$@item.Product.UnitPrice</span>
+                            </li>
+                        }
 
-        <div class="checkbox">
-            @Html.LabelFor(model => model.Express, "Envio Express", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.CheckBoxFor(model => model.Express, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Express, "", new { @class = "text-danger" })
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Cupon</h6>
+                                <small>N/A</small>
+                            </div>
+                            <span class="text-success">-$0</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Subtotal (MXN) $</span>
+                            <strong id="base">@ViewBag.Total</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (MXN) $</span>
+                            <strong id="firstValue">0</strong>
+                        </li>
+                    </ul>
+                    <!-- Cart -->
+                    <!-- Promo code -->
+                    <form class="card form-inline">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <input type="text" class="form-control pull-left col-xs-5" placeholder="Promo code">
+                                <button class="btn btn-secondary pull-right" type="button">
+                                    Redimir
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Promo code -->
+                </div>
+                <!--Grid column-->
             </div>
+            <!--Grid row-->
         </div>
+    </main>
+    <!--Main layout-->
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Comprar" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+   
     @ViewBag.Message
 }
 
+<script>
+    function addTheValue(secondValue) {
+        var y = document.getElementById("base");
+        var fValue = document.getElementById("firstValue");
+        firstValue.innerHTML = parseInt(y.innerHTML) + parseInt(secondValue);
+    }
+</script>
+
+<style>
+    .recibo-compra {
+        font-family: 'Montserrat', sans-serif;
+    }
+</style>
