@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PDS2_Store.Models.Compra>
+﻿@model IEnumerable<PDS2_Store.Models.MisPedidosViewModel>
 
 @{
     ViewBag.Title = "Índice";
@@ -9,19 +9,16 @@
 <table class="table" style="background-color:white">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.CompraId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DireccionId)
+            @Html.DisplayNameFor(model => model.Direccion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TarjetaId)
+            @Html.DisplayNameFor(model => model.Numero)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PaqueteriaId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Express)
+            @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Total)
@@ -35,19 +32,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
+            @Html.DisplayFor(modelItem => item.CompraId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DireccionId)
+            @Html.DisplayFor(modelItem => item.Direccion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TarjetaId)
+            @Html.DisplayFor(modelItem => item.Numero)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PaqueteriaId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Express)
+            @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Total)

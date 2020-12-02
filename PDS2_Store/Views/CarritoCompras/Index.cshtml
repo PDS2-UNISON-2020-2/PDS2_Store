@@ -53,7 +53,7 @@
                                                     <p></p>
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
-                                                            @Html.ActionLink(" ", "RemoveFromCartItem", "CarritoCompras", new { id = item.ItemId }, htmlAttributes: new { @class = "btn btn-normal btn-number glyphicon glyphicon-minus" })
+                                                            @Html.ActionLink(" ", "RemoveFromCartItem", "CarritoCompras", new { id = item.CartId }, htmlAttributes: new { @class = "btn btn-normal btn-number glyphicon glyphicon-minus" })
                                                         </span>
                                                         <input type="text" name="quant[1]" class="form-control input-number text-center" value=@item.Quantity min="1" max=@item.Product.Cantidad readonly="readonly">
                                                         <span class="input-group-btn">
@@ -72,7 +72,7 @@
                                                 </div>
                                                 <div class="col-md-1 product-info">
                                                     <label for="quantity">Acción</label>
-                                                    @Html.ActionLink(" ", "RemoveFromCartProducto", "CarritoCompras", new { id = item.ItemId }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                                                    @Html.ActionLink(" ", "RemoveFromCartProducto", "CarritoCompras", new { id = item.CartId }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
                                                 </div>
                                             </div>
                                         </div>

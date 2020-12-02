@@ -23,6 +23,8 @@ namespace PDS2_Store.Models
             // Agregar aquí notificaciones personalizadas de usuario
             return userIdentity;
         }
+
+        public byte[] ProfilePicture { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

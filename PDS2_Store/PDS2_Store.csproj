@@ -295,6 +295,14 @@
     <Compile Include="Migrations\202011250600384_cambio-modelo-vendedor.Designer.cs">
       <DependentUpon>202011250600384_cambio-modelo-vendedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012021838014_Ultimo_Producto_Vendedor_Cart.cs" />
+    <Compile Include="Migrations\202012021838014_Ultimo_Producto_Vendedor_Cart.Designer.cs">
+      <DependentUpon>202012021838014_Ultimo_Producto_Vendedor_Cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012022107261_Ultimo2.0_ProfilePicture.cs" />
+    <Compile Include="Migrations\202012022107261_Ultimo2.0_ProfilePicture.Designer.cs">
+      <DependentUpon>202012022107261_Ultimo2.0_ProfilePicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -499,6 +507,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011250600384_cambio-modelo-vendedor.resx">
       <DependentUpon>202011250600384_cambio-modelo-vendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012021838014_Ultimo_Producto_Vendedor_Cart.resx">
+      <DependentUpon>202012021838014_Ultimo_Producto_Vendedor_Cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012022107261_Ultimo2.0_ProfilePicture.resx">
+      <DependentUpon>202012022107261_Ultimo2.0_ProfilePicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

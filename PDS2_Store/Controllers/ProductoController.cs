@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages.Html;
+using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
 using PDS2_Store.RepositorioDapper;
 
@@ -20,7 +21,8 @@ namespace PDS2_Store.Controllers
         // GET: Productoes
         public ActionResult Index()
         {
-            var productos = db.Productos.Include(p => p.Vendedor);      
+            var username = User.Identity.GetUserName();
+            var productos = db.Productos.Include(p => p.Vendedor).Where(p => p.Activo == true && p.Vendedor.UserId == username);      
             return View(productos.ToList());
         }
 
@@ -42,7 +44,7 @@ namespace PDS2_Store.Controllers
         public ActionResult productosLista(String id)
         {
             int x = Int32.Parse(id);
-            var cat = db.Productos.Where(c => c.CatProductoId == x);
+            var cat = db.Productos.Where(c => c.CatProductoId == x && c.Activo == true);
             if (cat == null)
             {
                 return HttpNotFound();
@@ -57,12 +59,12 @@ namespace PDS2_Store.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 //Este busca la palabra si existe en los productos
-                bus = bus.Where(p => p.ProductName.Contains(searchString));
+                bus = bus.Where(p => p.ProductName.Contains(searchString) && p.Activo == true);
                 //ViewBag.Message = bus.Count() + " Prod";
                 if (bus.Count() == 0)
                 {
                     //Si no encuentra en los productos, busca que exista la palabra en las subcategorias
-                    bus = db.Productos.Where(c => c.CatProducto.CatNombre.Contains(searchString));
+                    bus = db.Productos.Where(c => c.CatProducto.CatNombre.Contains(searchString) && c.Activo == true);
                     //ViewBag.Message = bus.Count() + " SubCat";
                     if (bus.Count() == 0)
                     {
@@ -154,17 +156,21 @@ namespace PDS2_Store.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductoID,ProductName,Description, Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto, HttpPostedFileBase foto)
         {
+
             if (ModelState.IsValid)
             {
                 byte[] image = new byte[foto.ContentLength];
                 foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
+                var user = User.Identity.GetUserName();
+                var ven = db.Vendedores.Where(v => v.UserId == user).Single();
+                producto.Activo = true;
+                producto.VendedorID = ven.VendedorId;
                 producto.Imagen = image;
-
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
+            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre", producto.CatProductoId);
             ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId", producto.VendedorID);
             return View(producto);
         }
@@ -226,12 +232,18 @@ namespace PDS2_Store.Controllers
         // POST: Productoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Producto producto = db.Productos.Find(id);
-            db.Productos.Remove(producto);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                RepoDapper Repo = new RepoDapper();
+                Repo.BorrarProducto(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
 

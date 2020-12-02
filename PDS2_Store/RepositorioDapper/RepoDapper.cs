@@ -379,5 +379,78 @@ namespace PDS2_Store.RepositorioDapper
                 throw ex;
             }
         }
+
+        //Funciona, solo hace inactivos los productos
+        public bool BorrarProducto(int id)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @id = id };
+                con.Execute("dbo.BorrarProducto", parameters, commandType: CommandType.StoredProcedure);
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //Log error as per your need 
+                throw ex;
+            }
+        }
+
+        public List<MisPedidosViewModel> GetMisPedidos(string user)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @userid = user };
+                IList<MisPedidosViewModel> ReqList = SqlMapper.Query<MisPedidosViewModel>(
+                                 con, "dbo.ListaMisPedidos", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<MisPedidosDetallesViewModel> GetMisPedidosDetalles(int? compra)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @compraid = compra };
+                IList<MisPedidosDetallesViewModel> ReqList = SqlMapper.Query<MisPedidosDetallesViewModel>(
+                                 con, "dbo.ListaMisPedidosDetalles", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Vendedor> GetVendedorID(string user)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @username = user };
+                IList<Vendedor> ReqList = SqlMapper.Query<Vendedor>(
+                                 con, "dbo.VendedorID", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace PDS2_Store.Models
 
         public string UserId { get; set; }
 
+        public bool? Activo { get; set; }
+
     }
 
     public class Request
