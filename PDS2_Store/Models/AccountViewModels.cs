@@ -130,4 +130,12 @@ namespace PDS2_Store.Models
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
     }
+
+    public class UsersViewModel
+    {
+        public string Userid { get; set; }
+        public string UserName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Role { get; set; }
+    }
 }

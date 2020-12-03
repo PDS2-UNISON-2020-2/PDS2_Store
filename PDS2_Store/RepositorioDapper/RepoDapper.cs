@@ -453,7 +453,7 @@ namespace PDS2_Store.RepositorioDapper
             }
         }
 
-        public List<ReporteEstadoViewModels> ReporteEstado(States state)
+        public List<ReporteEstadoViewModels> ReporteEstado(string state)
         {
             try
             {
@@ -489,7 +489,7 @@ namespace PDS2_Store.RepositorioDapper
             }
         }
 
-        public List<ReporteProductoViewModel> ReporteProducto(int categ)
+        public List<ReporteProductoViewModel> ReporteProducto(string categ)
         {
             try
             {
