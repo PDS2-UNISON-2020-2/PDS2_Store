@@ -1,7 +1,14 @@
 ﻿@model PDS2_Store.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Administrar cuenta";
 }
+
+@if (User.IsInRole("admin"))
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
 
 <h2>@ViewBag.Title</h2>
 
@@ -11,6 +18,12 @@
         Cambiar la configuración de la cuenta
     </h4>
     <hr />
+    <dt>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="visible-xs">Cerrar sesión</a>
+        }
+    </dt>
     <dl class="dl-horizontal">
         <dt>Contraseña:</dt>
         <dd>
@@ -66,34 +79,34 @@
                 @Html.DisplayFor(model => model.Email)
             </div>
         </div>
-    @if (User.IsInRole("cliente"))
-    {
-        <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Fecha de nacimiento</h3>
+        @if (User.IsInRole("cliente"))
+        {
+            <div class="panel panel-info" style="margin: 1em;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Fecha de nacimiento</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.FechadeNacimiento)
+                </div>
             </div>
-            <div class="panel-body">
-                @Html.DisplayFor(model => model.FechadeNacimiento)
+            <div class="panel panel-info" style="margin: 1em;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Tarjetas</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.ActionLink("Administrar Tarjetas", "Tarjetas", "Manage")
+                </div>
             </div>
-        </div>
-        <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Tarjetas</h3>
+            <div class="panel panel-info" style="margin: 1em;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Direcciones</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.Direcciones)
+                    @Html.ActionLink("Administrar direcciones", "Direcciones")
+                </div>
             </div>
-            <div class="panel-body">
-                @Html.ActionLink("Administrar Tarjetas", "Tarjetas", "Manage")
-            </div>
-        </div>
-        <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Direcciones</h3>
-            </div>
-            <div class="panel-body">
-                @Html.DisplayFor(model => model.Direcciones)
-                @Html.ActionLink("Administrar direcciones", "Direcciones")
-            </div>
-        </div>
-     }
+        }
     </div>
 </div>
 
@@ -104,7 +117,7 @@
             <h3 class="panel-title">Productos</h3>
         </div>
         <div class="panel-body">
-            @Html.ActionLink("Administrar productos en venta", "Index","Producto")
+            @Html.ActionLink("Administrar productos en venta", "Index", "Producto")
         </div>
     </div>
 }
@@ -138,3 +151,6 @@ else
 
 
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

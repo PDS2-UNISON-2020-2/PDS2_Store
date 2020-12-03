@@ -81,25 +81,27 @@
                     <!-- Carrito-->
                     <a class="navbar-brand pull-right" href="/CarritoCompras/Index"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                     <!-- Perfil-->
-                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-user"></span></a>
+                    <a class="navbar-brand pull-right" href="/Manage/Index"><span class="glyphicon glyphicon-user"></span></a>
                 }
                 else
                 {
                     <!-- Registro -->
-                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="navbar-brand pull-right"  href="/Account/Register"><span class="glyphicon glyphicon-pencil"></span></a>
                     <!-- Login -->
-                    <a class="navbar-brand pull-right"><span class="glyphicon glyphicon-log-in"></span></a>
+                    <a class="navbar-brand pull-right"  href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span></a>
                 }
 
             </div>
             <!-- Buscador-->
             <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm input-sm" placeholder="Buscar ...">
-                    <button type="submit" class="searchButton btn-sm">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
+                <form class="navbar-form" role="search" method="get" id="searchform" action="@Url.Action("Search", "Producto")">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <input type="text" class="form-control searchTerm input-sm" value="" placeholder="Buscar..." name="searchString" id="s">
+                            <button type="submit" value="Search" class="btn searchButton btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <!-- Perfil No Collapse de la hamburger-->
