@@ -16,6 +16,7 @@ using System.Data.Entity;
 
 namespace PDS2_Store.Controllers
 {
+    [Authorize(Roles = "cliente")]
     public class CarritoComprasController : Controller
     {
         ProductContext carroDB = new ProductContext();
@@ -125,11 +126,9 @@ namespace PDS2_Store.Controllers
         public ActionResult Compra()
         {
             var userid = User.Identity.GetUserId();
-            
-
 
             RepoDapper EmpRepo = new RepoDapper();
-            ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
+            //ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
             ViewBag.DireccionID = new SelectList(EmpRepo.GetDirecciones(userid), "id", "Direccion");
             ViewBag.DireccionID2 = EmpRepo.GetDirecciones(userid);
             ViewBag.TarjetaId2 = EmpRepo.GetTarjetas(userid);
@@ -146,11 +145,6 @@ namespace PDS2_Store.Controllers
             ViewBag.Carrito = carrito;
             ViewBag.CarritoTotal = carrito.Count();
 
-            foreach (var item in ViewBag.TarjetaId2)
-            {
-            }
-
-
             return View();
         }
 
@@ -162,17 +156,17 @@ namespace PDS2_Store.Controllers
             TryUpdateModel(compra);
             var userid = User.Identity.GetUserId();
             RepoDapper EmpRepo = new RepoDapper();
-            ViewBag.TarjetaId = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
+            ViewBag.TarjetaId2 = new SelectList(EmpRepo.GetTarjetas(userid), "id", "Numero");
+            if (compra.TarjetaId == 0)
+            {
+                return RedirectToAction("AddTarjeta", "Manage");
+            }
             ViewBag.DireccionID = new SelectList(EmpRepo.GetDirecciones(userid), "id", "Direccion");
             ViewBag.PaqueteriaID = new SelectList(EmpRepo.GetEnvios(), "id", "Nombre", compra.PaqueteriaId);
 
             PaqueteriasContext paqueteriasDB = new PaqueteriasContext();
             int _PaqueteriasId = paqueteriasDB.Paquete.Where(x => x.Id == compra.PaqueteriaId).Select(x => x.PaqueteriasId).FirstOrDefault();
             int _precioEnvio = (int)paqueteriasDB.Paquete.Where(x => x.Id == compra.PaqueteriaId).Select(x => x.Precio).FirstOrDefault();
-
-            Debug.WriteLine("Tarjeta seleccionada " + compra.TarjetaId);
-            Debug.WriteLine("Paqueteria seleccionada "+ _PaqueteriasId + " "+ compra.PaqueteriaId);
-            Debug.WriteLine("Direccion seleccionada "+compra.DireccionId);
             
             compra.UserId = userid;
             compra.FechaCompra = DateTime.Now;

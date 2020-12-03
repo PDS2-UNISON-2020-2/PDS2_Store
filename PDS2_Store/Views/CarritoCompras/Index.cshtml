@@ -88,7 +88,10 @@
                         <div class="summary-item"><span class="text">Subtotal (@(Model.CartItems.Sum(item => item.Quantity)) productos):</span><span class="price">$ @Model.CartTotal </span></div>
                         <div class="summary-item"><span class="text">IVA</span><span class="price">$0</span></div>
                         <div class="summary-item"><span class="text">Total</span><span class="price">$ @Model.CartTotal </span></div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Compra", "CarritoCompras")'">Proceder a pagar </button>
+                        @if (Model.CartTotal > 0)
+                        {
+                            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Compra", "CarritoCompras")'">Proceder a pagar </button>
+                        }
                         <button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Home")'">Sigue Comprando <i class="fa fa-angle-left"></i></button>
                     </div>
                 </div>
