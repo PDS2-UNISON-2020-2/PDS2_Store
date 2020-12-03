@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages.Html;
+using Dapper;
 using Microsoft.AspNet.Identity;
 using PDS2_Store.Models;
 using PDS2_Store.RepositorioDapper;
@@ -212,12 +215,12 @@ namespace PDS2_Store.Controllers
         {
             var user = User.Identity.GetUserName();
             var ven = db.Vendedores.Where(v => v.UserId == user).Single();
-            var id = producto.ProductoID;
+            Producto img = new Producto();
 
-            
+
             if (ModelState.IsValid)
             {
-                
+
                 if (foto != null)
                 {
                     byte[] image = new byte[foto.ContentLength];
@@ -226,7 +229,12 @@ namespace PDS2_Store.Controllers
                 }
                 else
                 {
-
+                    using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                    {
+                        img = db.Query<Producto>("Select * From Productoes " +
+                                               "WHERE ProductoID =" + producto.ProductoID, new { producto.ProductoID }).SingleOrDefault();
+                    }
+                    producto.Imagen = img.Imagen;
                 }
 
                 producto.Activo = true;
