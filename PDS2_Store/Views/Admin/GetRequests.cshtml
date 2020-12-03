@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<PDS2_Store.Models.RequestViewModel>
 
 @{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
     ViewBag.Title = "GetRequests";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
@@ -90,5 +91,8 @@
     @Html.ActionLink("Regresar", "Index")
 </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 

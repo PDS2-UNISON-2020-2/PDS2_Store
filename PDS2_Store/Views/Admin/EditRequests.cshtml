@@ -1,6 +1,7 @@
 ﻿@model PDS2_Store.Models.RequestViewModel
 
 @{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
     ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
@@ -11,7 +12,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Solicitud de cliente</h4>
         <hr />
