@@ -412,6 +412,28 @@ namespace PDS2_Store.Controllers
             return View();
         }
 
+        //
+        // Foto
+        public FileResult Photo()
+        {
+            // get EF Database (maybe different way in your applicaiton)
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+
+            // find the user. I am skipping validations and other checks.
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+
+            if (user.ProfilePicture != null)
+            {
+                return new FileContentResult(user.ProfilePicture, "avatar1/jpeg");
+            }
+            else
+            {
+                return new FilePathResult("/Content/Imagenes/avatar1.png", "avatar1/jpeg");
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

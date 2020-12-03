@@ -55,18 +55,13 @@
                     <h3 class="cost">@Html.DisplayFor(model => model.UnitPrice)</h3>
                     <!--<div class="row">-->
                     <div class="col-md-4 col-sm-12">
+                        
                         <select class="form-control" name="select">
                             <option value="" selected="">—</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                            <option value="">5</option>
-                            <option value="">6</option>
-                            <option value="">7</option>
-                            <option value="">8</option>
-                            <option value="">9</option>
-                            <option value="">10</option>
+                                @for (int i = 1; i < Model.Cantidad; i++)
+                                {
+                                    <option value=@i>@i</option>
+                                }
                         </select>
                     </div>
                     <!-- end col -->
