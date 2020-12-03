@@ -26,7 +26,7 @@ namespace PDS2_Store.Models
         public string RFC { get; set; }
         public string Direccion { get; set; }
         public int CodigoPostal { get; set; }
-        public string Estado { get; set; }
+        public States Estado { get; set; }
         public string Ciudad { get; set; }
         [StringLength(128)]
         public string UserId { get; set; }
