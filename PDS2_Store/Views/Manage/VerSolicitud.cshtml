@@ -4,11 +4,9 @@
     ViewBag.Title = "VerSolicitud";
 }
 
-<h2>VerSolicitud</h2>
+<h2>Estado de solicitud</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -17,12 +15,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.ToList()) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stat)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.ToList())
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stat)
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
