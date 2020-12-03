@@ -159,13 +159,25 @@ namespace PDS2_Store.Controllers
 
             if (ModelState.IsValid)
             {
-                byte[] image = new byte[foto.ContentLength];
-                foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
+                
+                if (foto != null)
+                {
+                    byte[] image = new byte[foto.ContentLength];
+                    foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
+                    producto.Imagen = image;
+                }
+                else
+                {
+                    string imgPath = Server.MapPath("~/Content/imagenes/Imagen_no_disponible.png");
+                    byte[] img = System.IO.File.ReadAllBytes(imgPath);
+                    
+                    producto.Imagen = img;
+                }
                 var user = User.Identity.GetUserName();
                 var ven = db.Vendedores.Where(v => v.UserId == user).Single();
                 producto.Activo = true;
                 producto.VendedorID = ven.VendedorId;
-                producto.Imagen = image;
+
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -188,7 +200,6 @@ namespace PDS2_Store.Controllers
                 return HttpNotFound();
             }
             ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
-            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId", producto.VendedorID);
             return View(producto);
         }
 
@@ -199,18 +210,32 @@ namespace PDS2_Store.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductoID,ProductName,Description,Imagen,UnitPrice,Cantidad,CatProductoId,VendedorID")] Producto producto, HttpPostedFileBase foto)
         {
+            var user = User.Identity.GetUserName();
+            var ven = db.Vendedores.Where(v => v.UserId == user).Single();
+            var id = producto.ProductoID;
+
+            
             if (ModelState.IsValid)
             {
-                byte[] image = new byte[foto.ContentLength];
-                foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
-                producto.Imagen = image;
+                
+                if (foto != null)
+                {
+                    byte[] image = new byte[foto.ContentLength];
+                    foto.InputStream.Read(image, 0, Convert.ToInt32(foto.ContentLength));
+                    producto.Imagen = image;
+                }
+                else
+                {
 
+                }
+
+                producto.Activo = true;
+                producto.VendedorID = ven.VendedorId;
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
-            ViewBag.VendedorID = new SelectList(db.Vendedores, "VendedorId", "UserId", producto.VendedorID);
+            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre", producto.CatProductoId);
             return View(producto);
         }
 
