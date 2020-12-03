@@ -81,6 +81,11 @@ namespace PDS2_Store.Controllers
         {
              try
             {
+                Request requestUser= new Request();
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    requestUser = db.Query<Request>("Select * From Request WHERE id=" + id, new { id }).SingleOrDefault();
+                }
 
                 RequestStatus statu = new RequestStatus();
                 statu.RequestId = id;
@@ -93,8 +98,7 @@ namespace PDS2_Store.Controllers
                     using (var context = new ApplicationDbContext())
                     {
                         var usermanager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                        string clave= User.Identity.GetUserId();
-                        usermanager.AddToRole(clave,"vendedor");
+                        usermanager.AddToRole(requestUser.UserId, "vendedor");
                         context.SaveChanges();
                     }
                 }
@@ -105,8 +109,7 @@ namespace PDS2_Store.Controllers
                         using (var context = new ApplicationDbContext())
                         {
                             var usermanager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                            string clave = User.Identity.GetUserId();
-                            usermanager.RemoveFromRole(clave, "vendedor");
+                            usermanager.RemoveFromRole(requestUser.UserId, "vendedor");
                             context.SaveChanges();
                         }
                     }
