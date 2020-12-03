@@ -202,7 +202,7 @@ namespace PDS2_Store.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CatProductoId = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
+            ViewBag.catSelect = new SelectList(db.CatProductos, "CatProductoId", "CatNombre");
             return View(producto);
         }
 
