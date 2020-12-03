@@ -259,6 +259,7 @@
     <Compile Include="Controllers\PaqueteriasController.cs" />
     <Compile Include="Controllers\PaquetesController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\TelefonosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -466,6 +467,18 @@
     <Content Include="Views\Manage\EditDireccion.cshtml" />
     <Content Include="Views\Manage\DeleteDireccion.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Reportes\ReporteEstado.cshtml" />
+    <Content Include="Views\Reportes\Estado.cshtml" />
+    <Content Include="Views\Reportes\ReporteCategoria.cshtml" />
+    <Content Include="Views\Reportes\Categoria.cshtml" />
+    <Content Include="Views\Reportes\ReporteProducto.cshtml" />
+    <Content Include="Views\Reportes\Producto.cshtml" />
+    <Content Include="Views\Reportes\Cliente.cshtml" />
+    <Content Include="Views\Reportes\ReporteCliente.cshtml" />
+    <Content Include="Views\Reportes\ReporteVendedor.cshtml" />
+    <Content Include="Views\Reportes\Vendedor.cshtml" />
+    <Content Include="Views\Admin\Usuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

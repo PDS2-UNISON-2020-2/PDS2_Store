@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PDS2_Store.Models.Vendedor>
+
+@{
+    ViewBag.Title = "ReporteVendedor";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Reporte por Vendedor</h2>
+<h4>@Html.ActionLink("Regresar", "Index")</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            <a href="@Url.Action("Vendedor", "Reportes", new { vendedor = item.UserId})" class="list-group-item list-group-item-action">Reporte</a>
+        </td>
+    </tr>
+}
+
+</table>

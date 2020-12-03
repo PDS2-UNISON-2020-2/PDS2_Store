@@ -33,6 +33,31 @@ namespace PDS2_Store.Controllers
             return View(requestViewModel);
         }
 
+        public ActionResult Usuarios()
+        {
+            var context = new IdentityDbContext();
+            var usersWithRoles = (from user in context.Users
+                                  select new
+                                  {
+                                      UserId = user.Id,
+                                      Username = user.UserName,
+                                      Phone = user.PhoneNumber,
+                                      RoleNames = (from userRole in user.Roles
+                                                   join role in context.Roles on userRole.RoleId
+                                                   equals role.Id
+                                                   select role.Name).ToList()
+                                  }).ToList().Select(p => new UsersViewModel()
+
+                                  {
+                                      Userid = p.UserId,
+                                      UserName = p.Username,
+                                      PhoneNumber = p.Phone,
+                                      Role = string.Join(",", p.RoleNames)
+                                  });
+            return View(usersWithRoles);
+        }
+
+
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {

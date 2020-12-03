@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PDS2_Store.Models.ReporteCategoriaViewModel>
+
+@{
+    ViewBag.Title = "Categoria";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Categoria @ViewBag.message</h2>
+
+<h4>@Html.ActionLink("Regresar", "ReporteCategoria")</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CatNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompraId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImporteProducto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompraId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCompra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImporteProducto)
+        </td>
+    </tr>
+}
+
+</table>

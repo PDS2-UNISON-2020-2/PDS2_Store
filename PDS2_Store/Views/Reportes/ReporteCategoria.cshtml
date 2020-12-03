@@ -1,0 +1,22 @@
+﻿@model IEnumerable<PDS2_Store.Models.Categoria>
+@{
+    ViewBag.Title = "ReporteCategoria";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Reporte por Categoria</h2>
+<h4>@Html.ActionLink("Regresar", "Index")</h4>
+
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active">
+        @Html.DisplayNameFor(model => model.CategoryName) disponibles
+    </a>
+    
+    @foreach (var item in Model)
+    {
+    <a href="@Url.Action("Categoria", "Reportes", new { categoria = item.CategoryName})" class="list-group-item list-group-item-action">@Html.DisplayFor(modelItem => item.CategoryName)</a>
+        
+    }
+
+
+</div>

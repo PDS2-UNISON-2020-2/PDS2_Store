@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PDS2_Store.Models.UsersViewModel>
+
+@{
+    ViewBag.Title = "ReporteCliente";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Reporte por Cliente</h2>
+<h4>@Html.ActionLink("Regresar", "Index")</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            <a href="@Url.Action("Cliente", "Reportes", new { cliente = item.Userid})" class="list-group-item list-group-item-action">Reporte</a>
+        </td>
+    </tr>
+}
+
+</table>

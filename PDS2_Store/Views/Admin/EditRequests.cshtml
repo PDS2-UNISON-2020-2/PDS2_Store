@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Detalles</h2>
@@ -97,7 +98,7 @@
 }
 
 <div>
-    @Html.ActionLink("Regresar", "Index")
+    @Html.ActionLink("Regresar", "GetRequests")
 </div>
 
 @section Scripts {

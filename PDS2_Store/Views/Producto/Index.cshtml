@@ -22,9 +22,6 @@
                     @Html.DisplayNameFor(model => model.Imagen)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Vendedor.UserId)
-                </th>
-                <th>
                     <!-- Html.DisplayNameFor(model => model.ProductName) -->
                     Nombre
                 </th>
@@ -63,9 +60,6 @@
                         <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.Imagen))"
                              class="img-fluid img-thumbnail"  style="max-height: 50px; max-width: 50px;"/>
                     }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Vendedor.UserId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
