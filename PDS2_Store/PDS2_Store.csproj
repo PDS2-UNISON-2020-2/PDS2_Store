@@ -310,6 +310,7 @@
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\CarritoCompras.cs" />
     <Compile Include="Models\CarritoComprasViewModels.cs" />
+    <Compile Include="Models\ReportesViewModels.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\Paqueterias.cs" />
     <Compile Include="Models\Direcciones.cs" />
