@@ -13,82 +13,92 @@
 <h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>
-        Cambiar la configuración de la cuenta
-    </h4>
-    <hr />
-    <dt>
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+<div class="row">
+    <!--Foto de perfil-->
+    <div class="col-sm-4 text-center">
+        @using (Html.BeginForm("Profile", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <a href="javascript:document.getElementById('logoutForm').submit()" class="visible-xs">Cerrar sesión</a>
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <div class="img-thumbnail img-circle">
+                    <img class="img-circle" style="width: 140px; height: 140px; border-radius: 50%" src="@Url.Action("Photo", "Account")" />
+                    <div class="editor-label">
+                        <label for="profile">CAMBIAR<span class="glyphicon glyphicon-camera"></span></label>
+                    </div>
+                </div>
+                <div class="editor-field">
+                    <input name="Profile" id="profile" type="file" style="display:none"/>
+                </div>
+                <p>
+                    <input type="submit" value="GUARDAR" class="glyphicon glyphicon-save-file" />
+                </p>
+            </fieldset>
         }
-    </dt>
-    <dl class="dl-horizontal">
-        <dt>Contraseña:</dt>
-        <dd>
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Cambiar la contraseña", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Crear", "SetPassword")
-            }
-        </dd>
-        @*
-            <dt>Número de teléfono:</dt>
+    </div>
+    <div class="col-sm-8">
+        <h4>
+            Cambiar la configuración de la cuenta
+        </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Nombre:</dt>
             <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
+                @Html.DisplayFor(model => model.PrimerNombre) @Html.DisplayFor(model => model.SegundoNombre) @Html.DisplayFor(model => model.ApellidoPaterno) @Html.DisplayFor(model => model.ApellidoMaterno)
+            </dd>
+            <dt>Fecha de Nacimiento:</dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechadeNacimiento)
+            </dd>
+            <dt>Email:</dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>Contraseña:</dt>
+            <dd>
+                @if (Model.HasPassword)
                 {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Quitar" class="btn-link" />]</text>
-                    }
+                    @Html.ActionLink("Cambiar la contraseña", "ChangePassword")
                 }
                 else
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    @Html.ActionLink("Crear", "SetPassword")
                 }
             </dd>
-        *@
-        <!--Lo del perfil-->
-    </dl>
+            <dt>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="visible-xs">Cerrar sesión</a>
+                }
+            </dt>
+            @*
+        <dt>Número de teléfono:</dt>
+        <dd>
+            @(Model.PhoneNumber ?? "None")
+            @if (Model.PhoneNumber != null)
+            {
+                <br />
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <text>[<input type="submit" value="Quitar" class="btn-link" />]</text>
+                }
+            }
+            else
+            {
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+            }
+        </dd>
+            *@
+            <!--Lo del perfil-->
+        </dl>
+    </div>
 </div>
-
 
 <div class="row">
     <div class="col-md-9">
-        <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Nombre</h3>
-            </div>
-            <div class="panel-body">
-                @Html.DisplayFor(model => model.PrimerNombre) @Html.DisplayFor(model => model.SegundoNombre) @Html.DisplayFor(model => model.ApellidoPaterno) @Html.DisplayFor(model => model.ApellidoMaterno)
-            </div>
-        </div>
-        <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Correo registrado</h3>
-            </div>
-            <div class="panel-body">
-                @Html.DisplayFor(model => model.Email)
-            </div>
-        </div>
         @if (User.IsInRole("cliente"))
         {
-            <div class="panel panel-info" style="margin: 1em;">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Fecha de nacimiento</h3>
-                </div>
-                <div class="panel-body">
-                    @Html.DisplayFor(model => model.FechadeNacimiento)
-                </div>
-            </div>
             <div class="panel panel-info" style="margin: 1em;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tarjetas</h3>
@@ -110,47 +120,55 @@
     </div>
 </div>
 
-@if (User.IsInRole("vendedor"))
-{
-    <div class="panel panel-info" style="margin: 1em;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Productos</h3>
+    @if (User.IsInRole("vendedor"))
+    {
+        <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Productos</h3>
+            </div>
+            <div class="panel-body">
+                @Html.ActionLink("Administrar productos en venta", "Index", "Producto")
+            </div>
         </div>
-        <div class="panel-body">
-            @Html.ActionLink("Administrar productos en venta", "Index", "Producto")
-        </div>
-    </div>
-}
-else
-{
-    <div class="row">
-        <div class="jumbotron bg-white" style="background-color:white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h1 class="display-4">¡Empiece a vender hoy!</h1>
-                        <p class="lead">
-                            Tus productos frente a los millones de clientes que buscan en PDS2.com todos los días.
-                        </p>
-                        <hr class="my-4" />
-                        <p>
-                            Regístrate como vendedor.
-                        </p>
-                        <a class="btn btn-primary btn-lg" href="/Manage/VerificarRegistroVendedor" role="button">
-                            Vender con nosotros
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <img src="https://cdn.dribbble.com/users/1128531/screenshots/4961572/cover.jpg" class="img-responsive" />
+    }
+    else
+    {
+        <div class="row">
+            <div class="jumbotron bg-white" style="background-color:white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1 class="display-4">¡Empiece a vender hoy!</h1>
+                            <p class="lead">
+                                Tus productos frente a los millones de clientes que buscan en PDS2.com todos los días.
+                            </p>
+                            <hr class="my-4" />
+                            <p>
+                                Regístrate como vendedor.
+                            </p>
+                            <a class="btn btn-primary btn-lg" href="/Manage/VerificarRegistroVendedor" role="button">
+                                Vender con nosotros
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="https://cdn.dribbble.com/users/1128531/screenshots/4961572/cover.jpg" class="img-responsive" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+    }
+
+       
 
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+<style>
+    img {
+        border-radius: 50%;
+    }
+</style>
