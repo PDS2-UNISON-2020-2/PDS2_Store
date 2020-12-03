@@ -452,5 +452,95 @@ namespace PDS2_Store.RepositorioDapper
                 throw;
             }
         }
+
+        public List<ReporteEstadoViewModels> ReporteEstado(States state)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @estado = state };
+                IList<ReporteEstadoViewModels> ReqList = SqlMapper.Query<ReporteEstadoViewModels>(
+                                 con, "dbo.ReporteEstado", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<ReporteCategoriaViewModel> ReporteCategoria(string categ)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @categoria = categ };
+                IList<ReporteCategoriaViewModel> ReqList = SqlMapper.Query<ReporteCategoriaViewModel>(
+                                 con, "dbo.ReporteCategoria", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<ReporteProductoViewModel> ReporteProducto(int categ)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @producto = categ };
+                IList<ReporteProductoViewModel> ReqList = SqlMapper.Query<ReporteProductoViewModel>(
+                                 con, "dbo.ReporteProducto", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<ReporteClienteViewModel> ReporteCliente(string userid)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @user = userid };
+                IList<ReporteClienteViewModel> ReqList = SqlMapper.Query<ReporteClienteViewModel>(
+                                 con, "dbo.ReporteCliente", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<ReporteVendedorViewModel> ReporteVendedor(string username)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var parameters = new { @user = username };
+                IList<ReporteVendedorViewModel> ReqList = SqlMapper.Query<ReporteVendedorViewModel>(
+                                 con, "dbo.ReporteVendedor", parameters, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return ReqList.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
