@@ -58,7 +58,7 @@
                         
                         <select class="form-control" name="select">
                             <option value="" selected="">—</option>
-                                @for (int i = 1; i < Model.Cantidad; i++)
+                                @for (int i = 1; i < Model.Cantidad + 1; i++)
                                 {
                                     <option value=@i>@i</option>
                                 }
