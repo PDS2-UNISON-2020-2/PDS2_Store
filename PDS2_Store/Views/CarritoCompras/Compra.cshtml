@@ -4,6 +4,17 @@
     int num = 0;
 }
 
+@section head{
+    <style type="text/css">
+        body {
+            background-image: url('https://products.ls.graphics/paaatterns/images/027-p-1080.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+        }
+    </style>
+}
+
 @using (Html.BeginForm("Compra", "CarritoCompras", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -42,10 +53,12 @@
                                     <div class="row">
                                         <div class="form-group col-md-offset-1">
                                             <div class="card col-sm-6 mb-3" style="border-color:#ffffff">
-                                                <div class="card-body">
-                                                    <h5 class="card-title align-middle fa fa-credit-card"> @item.Nombre</h5>
-                                                    <p class="card-text"><input class="custom-control-input" checked required type="radio" name="TarjetaId" id="exampleRadios1" value=@item.id> @item.Numero</p>
-                                                </div>
+												<div class="card-body">
+													<h5 class="card-title align-middle">
+														<span class="fa fa-credit-card"></span>
+														@item.Nombre
+													</h5>                                                    <p class="card-text"><input class="custom-control-input" checked required type="radio" name="TarjetaId" id="exampleRadios1" value=@item.id> @item.Numero</p>
+												</div>
                                             </div>
                                         </div>
                                     </div>
