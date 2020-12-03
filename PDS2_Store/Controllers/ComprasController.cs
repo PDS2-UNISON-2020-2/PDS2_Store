@@ -12,6 +12,7 @@ using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
+    [Authorize(Roles = "cliente")]
     public class ComprasController : Controller
     {
         private ProductContext db = new ProductContext();

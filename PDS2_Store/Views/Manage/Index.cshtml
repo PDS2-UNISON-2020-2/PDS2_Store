@@ -14,7 +14,6 @@
     <dl class="dl-horizontal">
         <dt>Contraseña:</dt>
         <dd>
-            [
             @if (Model.HasPassword)
             {
                 @Html.ActionLink("Cambiar la contraseña", "ChangePassword")
@@ -23,12 +22,6 @@
             {
                 @Html.ActionLink("Crear", "SetPassword")
             }
-            ]
-        </dd>
-        <dt>Inicios de sesión externos:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Administrar", "ManageLogins") ]
         </dd>
         @*
             <dt>Número de teléfono:</dt>
@@ -73,6 +66,8 @@
                 @Html.DisplayFor(model => model.Email)
             </div>
         </div>
+    @if (User.IsInRole("cliente"))
+    {
         <div class="panel panel-info" style="margin: 1em;">
             <div class="panel-heading">
                 <h3 class="panel-title">Fecha de nacimiento</h3>
@@ -95,34 +90,51 @@
             </div>
             <div class="panel-body">
                 @Html.DisplayFor(model => model.Direcciones)
-                @Html.ActionLink("Administrar direcciones","Direcciones")
+                @Html.ActionLink("Administrar direcciones", "Direcciones")
             </div>
         </div>
+     }
     </div>
 </div>
 
-<div class="row">
-    <div class="jumbotron bg-white" style="background-color:white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="display-4">¡Empiece a vender hoy!</h1>
-                    <p class="lead">
-                        Tus productos frente a los millones de clientes que buscan en PDS2.com todos los días.
-                    </p>
-                    <hr class="my-4" />
-                    <p>
-                        Regístrate como vendedor.
-                    </p>
-                    <a class="btn btn-primary btn-lg" href="/Manage/VerificarRegistroVendedor" role="button">
-                        Vender con nosotros
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://cdn.dribbble.com/users/1128531/screenshots/4961572/cover.jpg" class="img-responsive" />
+@if (User.IsInRole("vendedor"))
+{
+    <div class="panel panel-info" style="margin: 1em;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Productos</h3>
+        </div>
+        <div class="panel-body">
+            @Html.ActionLink("Administrar productos en venta", "Index","Producto")
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="jumbotron bg-white" style="background-color:white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="display-4">¡Empiece a vender hoy!</h1>
+                        <p class="lead">
+                            Tus productos frente a los millones de clientes que buscan en PDS2.com todos los días.
+                        </p>
+                        <hr class="my-4" />
+                        <p>
+                            Regístrate como vendedor.
+                        </p>
+                        <a class="btn btn-primary btn-lg" href="/Manage/VerificarRegistroVendedor" role="button">
+                            Vender con nosotros
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://cdn.dribbble.com/users/1128531/screenshots/4961572/cover.jpg" class="img-responsive" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+
+
 

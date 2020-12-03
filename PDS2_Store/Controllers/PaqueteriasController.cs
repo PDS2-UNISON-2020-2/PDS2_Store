@@ -14,6 +14,7 @@ using PDS2_Store.RepositorioDapper;
 
 namespace PDS2_Store.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class PaqueteriasController : Controller
     {
         private PaqueteriasContext db = new PaqueteriasContext();

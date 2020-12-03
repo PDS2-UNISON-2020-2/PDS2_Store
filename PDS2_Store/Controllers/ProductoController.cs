@@ -20,7 +20,7 @@ namespace PDS2_Store.Controllers
     public class ProductoController : Controller
     {
         private ProductContext db = new ProductContext();
-
+        [Authorize(Roles = "vendedor")]
         // GET: Productoes
         public ActionResult Index()
         {
